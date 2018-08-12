@@ -10,7 +10,7 @@ day.prototype =  {
 		console.log('preload: day');
 
 		game.load.image('tile', 'assets/img/tileee.png');
-		game.load.image('rug', 'assets/img/rug.png');
+		game.load.image('rug', 'assets/img/rugwarped.png');
 		game.load.image('wall', 'assets/img/wall.png');
 
 		game.load.spritesheet('player', 'assets/img/testguy.png',32,32);
@@ -23,7 +23,7 @@ day.prototype =  {
 
         // This is used to set a game canvas-based offset for the 0, 0, 0 isometric coordinate - by default
         // this point would be at screen coordinates 0, 0 (top left) which is usually undesirable.
-        game.iso.anchor.setTo(0.5, 0);
+        game.iso.anchor.setTo(0.5, 0.4);
         game.world.setBounds(0, 0, 1620, 1080);
 	},
 	create: function() {
@@ -35,29 +35,9 @@ day.prototype =  {
 
         this.spawnTiles();
 
-        // Let's make a load of cubes on a grid, but do it back-to-front so they get added out of order.
-        // var cube;
-        // for (var xx = 256; xx > 0; xx -= 80) {
-        //     for (var yy = 256; yy > 0; yy -= 80) {
-        //         // Create a cube using the new game.add.isoSprite factory method at the specified position.
-        //         // The last parameter is the group you want to add it to (just like game.add.sprite)
-        //         cube = game.add.isoSprite(xx, yy, 0, 'tile', 0, isoGroup);
-        //         cube.anchor.set(0.5);
-
-        //         // Enable the physics body on this cube.
-        //         game.physics.isoArcade.enable(cube);
-
-        //         // Collide with the world bounds so it doesn't go falling forever or fly off the screen!
-        //         cube.body.collideWorldBounds = true;
-
-        //         // Add a full bounce on the x and y axes, and a bit on the z axis. 
-        //         cube.body.bounce.set(1, 1, 0.2);
-
-        //         // Add some X and Y drag to make cubes slow down after being pushed.
-        //         cube.body.drag.set(100, 100, 0);
-        //     }
-        // }
-
+        wall = game.add.isoSprite(114, 200, 0, 'wall', 0, isoGroup);
+        wall.anchor.set(.5);
+        wall.rotation = -.12;
         // Create another cube as our 'player', and set it up just like the cubes above.
         player = game.add.isoSprite(128, 128, 20, 'player', 1, isoGroup);
         player.tint = 0x86bfda;
