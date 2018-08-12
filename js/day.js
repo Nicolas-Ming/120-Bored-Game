@@ -8,10 +8,11 @@ var day = function() {
 day.prototype =  {
 	preload: function() {
 		console.log('preload: day');
-		game.load.tilemap('IsometricTest', 'assets/img/IsometricTest.json', null, Phaser.Tilemap.TILED_JSON);
-		game.load.image('tiles', 'assets/img/TestFloor.png');
 
-		game.load.image('tile', 'assets/img/tile.png');
+		game.load.image('tile', 'assets/img/tileee.png');
+		game.load.image('rug', 'assets/img/rug.png');
+		game.load.image('wall', 'assets/img/wall.png');
+
 		game.load.spritesheet('player', 'assets/img/testguy.png',32,32);
 
         // Add and enable the plug-in.
@@ -22,7 +23,8 @@ day.prototype =  {
 
         // This is used to set a game canvas-based offset for the 0, 0, 0 isometric coordinate - by default
         // this point would be at screen coordinates 0, 0 (top left) which is usually undesirable.
-        game.iso.anchor.setTo(0.5, 0.2);
+        game.iso.anchor.setTo(0.5, 0);
+        game.world.setBounds(0, 0, 1620, 1080);
 	},
 	create: function() {
 		 // Create a group for our tiles, so we can use Group.sort
@@ -60,8 +62,12 @@ day.prototype =  {
         player = game.add.isoSprite(128, 128, 20, 'player', 1, isoGroup);
         player.tint = 0x86bfda;
         player.anchor.set(0.5);
-        game.physics.isoArcade.enable(player);
+        game.physics.isoArcade.enable(player,Phaser.Camera.FOLLOW_LOCKON);
         player.body.collideWorldBounds = true;
+        game.camera.scale.x = 2;
+        game.camera.scale.y = 2;
+        player.scale.x = 2;
+        player.scale.y = 2;
 
         // Set up our controls.
         this.cursors = game.input.keyboard.createCursorKeys();
@@ -77,6 +83,9 @@ day.prototype =  {
         var walkDown = player.animations.add('walkDown',[0,1,2]);
         var walkLeft = player.animations.add('walkLeft',[12,13,14]);
         var walkRight = player.animations.add('walkRight',[24,25,26]);
+
+        game.camera.follow(player);
+        //game.camera.deadzone = new Phaser.Rectangle(500, 500, 200, 300);
 
         //this.playerAnimate();
 
@@ -98,11 +107,15 @@ day.prototype =  {
         game.iso.topologicalSort(isoGroup);
 
 	},
+    render: function() {
+        game.debug.cameraInfo(game.camera, 32, 32);
+        game.debug.spriteCoords(player, 32, 500);
+    },
 	// tile creation needs work
 	spawnTiles: function () {
         var tile;
-        for (var xx = 0; xx < 256; xx += 35) {
-            for (var yy = 0; yy < 256; yy += 35) {
+        for (var xx = 0; xx < 800; xx += 36) {
+            for (var yy = 0; yy < 800; yy += 36) {
                 // Create a tile using the new game.add.isoSprite factory method at the specified position.
                 // The last parameter is the group you want to add it to (just like game.add.sprite)
                 tile = game.add.isoSprite(xx, yy, 0, 'tile', 0, isoGroup);
@@ -128,18 +141,25 @@ day.prototype =  {
         if(this.cursors.left.isDown && this.cursors.up.isDown) {
         	player.play('walkLeft', 30);	
         }
+        if(this.cursors.right.isDown && this.cursors.down.isDown) {
+            player.play('walkRight', 30);    
+        }
+        if(this.cursors.right.isDown && this.cursors.up.isDown) {
+            player.play('walkUp', 30);    
+        }
+        if(this.cursors.left.isDown && this.cursors.down.isDown) {
+            player.play('walkDown', 30);    
+        }
     },
 
 	playerMove: function(){
-		var speed = 100;
+		var speed = 500;
 
         if (this.cursors.up.isDown) {
             player.body.velocity.x = -speed;
-            player.play('walkUp', 30);
         }
         else if (this.cursors.down.isDown) {
             player.body.velocity.x = speed;
-            player.play('walkDown', 30);
         }
         else {
             player.body.velocity.x = 0;
@@ -147,25 +167,21 @@ day.prototype =  {
 
         if (this.cursors.left.isDown) {
             player.body.velocity.y = speed;
-            player.play('walkLeft', 30);
         }
         else if (this.cursors.right.isDown) {
             player.body.velocity.y = -speed;
-            player.play('walkRight', 30);
         }
         else {
             player.body.velocity.y = 0;
         }
         if (this.cursors.left.isDown && this.cursors.up.isDown || this.cursors.down.isDown && this.cursors.right.isDown){
-        	speed = 50;
+        	speed = 250;
         	if(this.cursors.left.isDown && this.cursors.up.isDown) {
         		player.body.velocity.x = -speed;
         		player.body.velocity.y = speed;
-        		player.play('walkLeft', 30);
         	}else{
         		player.body.velocity.x = speed;
         		player.body.velocity.y = -speed;
-        		player.play('walkRight', 30);
         	}
         }else{
         	speed = 100;
