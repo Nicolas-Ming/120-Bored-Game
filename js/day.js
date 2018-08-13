@@ -11,7 +11,9 @@ day.prototype =  {
 
 		game.load.image('tile', 'assets/img/tileee.png');
 		game.load.image('rug', 'assets/img/rugwarped.png');
-		game.load.image('wall', 'assets/img/wall.png');
+		game.load.image('cactus', 'assets/img/cactusboi/cactusnoface.png');
+		game.load.image('lwall', 'assets/img/wallTileLeft.png');
+		game.load.image('rwall', 'assets/img/wallTileRight.png');
 
 		game.load.spritesheet('player', 'assets/img/testguy.png',32,32);
 
@@ -23,23 +25,20 @@ day.prototype =  {
 
         // This is used to set a game canvas-based offset for the 0, 0, 0 isometric coordinate - by default
         // this point would be at screen coordinates 0, 0 (top left) which is usually undesirable.
-        game.iso.anchor.setTo(0.5, 0.4);
+        game.iso.anchor.setTo(0.5, 0.3);
         game.world.setBounds(0, 0, 1620, 1080);
 	},
 	create: function() {
 		 // Create a group for our tiles, so we can use Group.sort
         isoGroup = game.add.group();
+        leftWall = game.add.group();
 
         // Set the global gravity for IsoArcade.
         game.physics.isoArcade.gravity.setTo(0, 0, -500);
 
         this.spawnTiles();
-
-
-        wall = game.add.isoSprite(114, 200, 50, 'wall', 0, isoGroup);
-        wall.anchor.set(.5);
-        wall.rotation = -.12;
-
+        rug = game.add.isoSprite(300, 300, 0, 'rug', 0, isoGroup);
+        rug.anchor.set(0.5);
         // Create another cube as our 'player', and set it up just like the cubes above.
         player = game.add.isoSprite(128, 128, 20, 'player', 1, isoGroup);
         player.tint = 0x86bfda;
@@ -47,8 +46,8 @@ day.prototype =  {
 
         game.physics.isoArcade.enable(player,Phaser.Camera.FOLLOW_LOCKON);
         player.body.collideWorldBounds = true;
-        game.camera.scale.x = 2;
-        game.camera.scale.y = 2;
+        // game.camera.scale.x = 1.5;
+        // game.camera.scale.y = 1.5;
         player.scale.x = 2;
         player.scale.y = 2;
 
@@ -81,23 +80,36 @@ day.prototype =  {
 
         // Our collision and sorting code again.
         game.physics.isoArcade.collide(isoGroup);
-        game.iso.topologicalSort(isoGroup);
+        //game.iso.topologicalSort(isoGroup);
+
 
 	},
     render: function() {
         game.debug.cameraInfo(game.camera, 32, 32);
         game.debug.spriteCoords(player, 32, 500);
+
     },
 	// tile creation needs work
 	spawnTiles: function () {
         var tile;
         for (var xx = 0; xx < 800; xx += 36) {
             for (var yy = 0; yy < 800; yy += 36) {
-
-                // Create a tile using the new game.add.isoSprite factory method at the specified position.
-                // The last parameter is the group you want to add it to (just like game.add.sprite)
-                tile = game.add.isoSprite(xx, yy, 0, 'tile', 0, isoGroup);
-                tile.anchor.set(0.5, 0);
+            	if (xx == 0 && yy == 0){
+            		tile = game.add.isoSprite(xx, yy,0, 'lwall', 0, isoGroup);
+                	tile.anchor.set(1, 1);
+                	tile = game.add.isoSprite(xx, yy,0, 'rwall', 0, isoGroup);
+                	tile.anchor.set(1, 1);
+            	}else if (xx == 0 ){
+            		tile = game.add.isoSprite(xx, yy,0, 'lwall', 0, isoGroup);
+                	tile.anchor.set(1, 1);
+            	}else if (yy == 0) {
+            		tile = game.add.isoSprite(xx, yy,0, 'rwall', 0, isoGroup);
+                	tile.anchor.set(1, 1);
+            	}else{
+            		tile = game.add.isoSprite(xx, yy, 0, 'tile', 0, isoGroup);
+                	tile.anchor.set(1, 1);
+            	}
+                
             }
         }
     },
