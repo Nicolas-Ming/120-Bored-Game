@@ -11,4 +11,4 @@ game.state.add('day',day);
 //game.state.add('night',night);
 //game.state.add('talking',talking);
 //game.state.add('settings',settings);
-game.state.start('boot');
+game.state.start('boot'); 
