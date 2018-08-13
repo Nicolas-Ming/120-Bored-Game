@@ -43,10 +43,19 @@ day.prototype =  {
         //rug.rotation = .3;
         cactus = game.add.isoSprite(72, 46, 0, 'cactus', 0, isoGroup);
         cactus.anchor.set(1);
+        game.physics.isoArcade.enable(cactus);
+        cactus.body.immovable = true;
+        cactus.body.allowGravity = false;
+        cactus.body.setSize(30,30,10,-30,-35,-10);
         cactus.scale.x = .4;
         cactus.scale.y = .4;
         bed = game.add.isoSprite(692, 96, 0, 'bed', 0, isoGroup);
+
         bed.anchor.set(0.5);
+        game.physics.isoArcade.enable(bed);
+        bed.body.immovable = true;
+        bed.body.allowGravity = false;
+        bed.body.setSize(20000,1000,0,-80,-35,-10);
         bed.scale.x = .4;
         bed.scale.y = .4;
         bed.rotation = .3;
@@ -56,8 +65,8 @@ day.prototype =  {
 
         game.physics.isoArcade.enable(player,Phaser.Camera.FOLLOW_LOCKON);
         player.body.collideWorldBounds = true;
-        game.camera.scale.x = 1.5;
-        game.camera.scale.y = 1.5;
+        // game.camera.scale.x = 1.5;
+        // game.camera.scale.y = 1.5;
         player.scale.x = 2;
         player.scale.y = 2;
 
@@ -100,6 +109,9 @@ day.prototype =  {
     render: function() {
         game.debug.cameraInfo(game.camera, 32, 32);
         game.debug.spriteCoords(player, 32, 500);
+        // game.debug.body(bed);
+        // game.debug.body(cactus);
+        // game.debug.body(player);
 
     },
 	// tile creation needs work
