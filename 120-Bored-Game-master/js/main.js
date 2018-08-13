@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-var game = new Phaser.Game(1080,720);
-=======
 var game = new Phaser.Game(1024,1024);
->>>>>>> origin/master
 
 //global variables
 console.log('preload: main')
