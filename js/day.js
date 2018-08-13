@@ -14,6 +14,7 @@ day.prototype =  {
 		game.load.image('cactus', 'assets/img/cactusboi/cactusnoface.png');
 		game.load.image('lwall', 'assets/img/wallTileLeft.png');
 		game.load.image('rwall', 'assets/img/wallTileRight.png');
+		game.load.image('bed', 'assets/img/bed.png');
 
 		game.load.spritesheet('player', 'assets/img/testguy.png',32,32);
 
@@ -39,15 +40,24 @@ day.prototype =  {
         this.spawnTiles();
         rug = game.add.isoSprite(300, 300, 0, 'rug', 0, isoGroup);
         rug.anchor.set(0.5);
+        //rug.rotation = .3;
+        cactus = game.add.isoSprite(72, 46, 0, 'cactus', 0, isoGroup);
+        cactus.anchor.set(1);
+        cactus.scale.x = .4;
+        cactus.scale.y = .4;
+        bed = game.add.isoSprite(692, 96, 0, 'bed', 0, isoGroup);
+        bed.anchor.set(0.5);
+        bed.scale.x = .4;
+        bed.scale.y = .4;
+        bed.rotation = .3;
         // Create another cube as our 'player', and set it up just like the cubes above.
         player = game.add.isoSprite(128, 128, 20, 'player', 1, isoGroup);
-        player.tint = 0x86bfda;
-        player.anchor.set(0.5);
+        player.anchor.set(.5);
 
         game.physics.isoArcade.enable(player,Phaser.Camera.FOLLOW_LOCKON);
         player.body.collideWorldBounds = true;
-        // game.camera.scale.x = 1.5;
-        // game.camera.scale.y = 1.5;
+        game.camera.scale.x = 1.5;
+        game.camera.scale.y = 1.5;
         player.scale.x = 2;
         player.scale.y = 2;
 
@@ -71,12 +81,15 @@ day.prototype =  {
         game.camera.follow(player);
         //game.camera.deadzone = new Phaser.Rectangle(500, 500, 200, 300);
 
+        this.interact = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+
 
 	},
 	update: function() {
 		// Move the player at this speed.
         this.playerMove();
         this.playerAnimate();
+        this.checkPlayer();
 
         // Our collision and sorting code again.
         game.physics.isoArcade.collide(isoGroup);
@@ -92,17 +105,17 @@ day.prototype =  {
 	// tile creation needs work
 	spawnTiles: function () {
         var tile;
-        for (var xx = 0; xx < 800; xx += 36) {
-            for (var yy = 0; yy < 800; yy += 36) {
-            	if (xx == 0 && yy == 0){
+        for (var xx = 72; xx < 872; xx += 36) {
+            for (var yy = 36; yy < 836; yy += 36) {
+            	if (xx == 72 && yy == 36){
             		tile = game.add.isoSprite(xx, yy,0, 'lwall', 0, isoGroup);
                 	tile.anchor.set(1, 1);
                 	tile = game.add.isoSprite(xx, yy,0, 'rwall', 0, isoGroup);
                 	tile.anchor.set(1, 1);
-            	}else if (xx == 0 ){
+            	}else if (xx == 72 ){
             		tile = game.add.isoSprite(xx, yy,0, 'lwall', 0, isoGroup);
                 	tile.anchor.set(1, 1);
-            	}else if (yy == 0) {
+            	}else if (yy == 36) {
             		tile = game.add.isoSprite(xx, yy,0, 'rwall', 0, isoGroup);
                 	tile.anchor.set(1, 1);
             	}else{
@@ -112,6 +125,13 @@ day.prototype =  {
                 
             }
         }
+    },
+
+    checkPlayer: function(){
+    	if (Phaser.Rectangle.intersects(player.getBounds(),cactus.getBounds()) && this.interact.justPressed()){
+    		console.log('cactus');
+
+    	}
     },
 
 	playerAnimate: function(){
