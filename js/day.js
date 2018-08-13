@@ -36,7 +36,7 @@ day.prototype =  {
         this.spawnTiles();
 
 
-        wall = game.add.isoSprite(114, 200, 0, 'wall', 0, isoGroup);
+        wall = game.add.isoSprite(114, 200, 50, 'wall', 0, isoGroup);
         wall.anchor.set(.5);
         wall.rotation = -.12;
 
