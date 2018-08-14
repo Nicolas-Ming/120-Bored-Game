@@ -34,15 +34,15 @@ day.prototype =  {
    		game.load.image('scarf', 'assets/img/portrait/scarf.png');
     	game.load.image('smallvase', 'assets/img/portrait/smallvase.png');
 
-		game.load.spritesheet('player', 'assets/img/testguy.png',32,32);
+		game.load.spritesheet('this.player', 'assets/img/testguy.png',32,32);
 
 		game.load.image('dialogbox', 'assets/img/dialogbox.png');
 
 		game.load.text('dialog', 'js/Dialog.json');
 
-		this.load.path = 'assets/img/';
+		//this.load.path = 'assets/img/';
 
-		game.load.bitmapFont('font', 'gem.png', 'gem.xml');
+		game.load.bitmapFont('font', 'assets/img/gem.png', 'assets/img/gem.xml');
 
         // Add and enable the plug-in.
         game.plugins.add(new Phaser.Plugin.Isometric(game));
@@ -109,14 +109,22 @@ day.prototype =  {
         rug = game.add.isoSprite(300, 300, 0, 'rug', 0, isoGroup);
         rug.anchor.set(0.5);
         //rug.rotation = .3;
-        cactusnoface = game.add.isoSprite(72, 46, 0, 'cactusnoface', 0, isoGroup);
-        cactusnoface.anchor.set(1);
-        game.physics.isoArcade.enable(cactusnoface);
-        cactusnoface.body.immovable = true;
-        cactusnoface.body.allowGravity = false;
-        cactusnoface.body.setSize(30,30,10,-30,-35,-10);
-        cactusnoface.scale.x = .4;
-        cactusnoface.scale.y = .4;
+
+        if (daynum == 1){
+        	cactusnoface = game.add.isoSprite(72, 46, 0, 'cactusnoface', 0, isoGroup);
+        	cactusnoface.anchor.set(1);
+        	game.physics.isoArcade.enable(cactusnoface);
+        	cactusnoface.body.immovable = true;
+        	cactusnoface.body.allowGravity = false;
+        	cactusnoface.body.setSize(30,30,10,-30,-35,-10);
+        	cactusnoface.scale.x = .4;
+        	cactusnoface.scale.y = .4;
+        } else {
+        	cactusboi = game.add.sprite(800, 250, 'cactusboi');
+        	cactusboi.anchor.setTo(0.5);
+        	cactusboi.scale.setTo(0.3);
+        }
+        
 
         bed = game.add.isoSprite(692, 96, 0, 'bed', 0, isoGroup);
         bed.anchor.set(0.5);
@@ -127,16 +135,16 @@ day.prototype =  {
         bed.scale.x = .4;
         bed.scale.y = .4;
         bed.rotation = .3;
-        // Create another cube as our 'player', and set it up just like the cubes above.
-        player = game.add.isoSprite(128, 128, 20, 'player', 1, isoGroup);
-        player.anchor.set(.5);
+        // Create another cube as our 'this.player', and set it up just like the cubes above.
+        this.player = game.add.isoSprite(700, 20, 0, 'this.player', 12, isoGroup);
+        this.player.anchor.set(.5);
 
-        game.physics.isoArcade.enable(player,Phaser.Camera.FOLLOW_LOCKON);
-        player.body.collideWorldBounds = true;
+        game.physics.isoArcade.enable(this.player,Phaser.Camera.FOLLOW_LOCKON);
+        this.player.body.collideWorldBounds = true;
         // game.camera.scale.x = 1.5;
         // game.camera.scale.y = 1.5;
-        player.scale.x = 2;
-        player.scale.y = 2;
+        this.player.scale.x = 2;
+        this.player.scale.y = 2;
 
 
         // Set up our controls.
@@ -149,13 +157,13 @@ day.prototype =  {
             Phaser.Keyboard.DOWN,
         ]);
 
-        var walkUp = player.animations.add('walkUp',[36,37,38]);
-        var walkDown = player.animations.add('walkDown',[0,1,2]);
-        var walkLeft = player.animations.add('walkLeft',[12,13,14]);
-        var walkRight = player.animations.add('walkRight',[24,25,26]);
+        var walkUp = this.player.animations.add('walkUp',[36,37,38]);
+        var walkDown = this.player.animations.add('walkDown',[0,1,2]);
+        var walkLeft = this.player.animations.add('walkLeft',[12,13,14]);
+        var walkRight = this.player.animations.add('walkRight',[24,25,26]);
 
 
-        game.camera.follow(player);
+        game.camera.follow(this.player);
         //game.camera.deadzone = new Phaser.Rectangle(500, 500, 200, 300);
 
         this.interact = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
@@ -163,7 +171,7 @@ day.prototype =  {
 
 	},
 	update: function() {
-		// Move the player at this speed.
+		// Move the this.player at this speed.
         this.playerMove();
         this.playerAnimate();
         this.checkPlayer();
@@ -176,10 +184,10 @@ day.prototype =  {
 	},
     render: function() {
         game.debug.cameraInfo(game.camera, 32, 32);
-        game.debug.spriteCoords(player, 32, 500);
-        game.debug.body(bed);
-        game.debug.body(cactusnoface);
-        game.debug.body(player);
+        game.debug.spriteCoords(this.player, 32, 500);
+        // game.debug.body(bed);
+        //game.debug.body(cactusnoface);
+        // game.debug.body(this.player);
 
     },
 	// tile creation needs work
@@ -208,38 +216,46 @@ day.prototype =  {
     },
 
     checkPlayer: function(){
-    	if (Phaser.Rectangle.intersects(player.getBounds(),cactusnoface.getBounds()) && this.interact.justPressed()){
-    		console.log('cactus');
-    		this.cactusboi();
-
+    	if (daynum == 1){
+    		if (Phaser.Rectangle.intersects(this.player.getBounds(),cactusnoface.getBounds()) && this.interact.justPressed()){
+    			console.log('cactus');
+    			this.cactusboi();
+    		}
     	}
+    	if (daynum == 2){
+    		if (Phaser.Rectangle.intersects(this.player.getBounds(),cactusboi.getBounds()) && this.interact.justPressed()){
+    			console.log('cactus');
+    			this.cactusboi();
+    		}
+    	}
+    	
     },
 
 	playerAnimate: function(){
 		if (this.cursors.up.isDown && !this.cursors.left.isDown && !this.cursors.right.isDown) {
-            player.play('walkUp', 30);
+            this.player.play('walkUp', 30);
         }
         if (this.cursors.down.isDown && !this.cursors.left.isDown && !this.cursors.right.isDown) {
-            player.play('walkDown', 30);
+            this.player.play('walkDown', 30);
         }
 
         if (this.cursors.left.isDown && !this.cursors.up.isDown && !this.cursors.down.isDown) {
-            player.play('walkLeft', 30);
+            this.player.play('walkLeft', 30);
         }
         if (this.cursors.right.isDown && !this.cursors.up.isDown && !this.cursors.down.isDown) {
-            player.play('walkRight', 30);
+            this.player.play('walkRight', 30);
         }
         if(this.cursors.left.isDown && this.cursors.up.isDown) {
-        	player.play('walkLeft', 30);	
+        	this.player.play('walkLeft', 30);	
         }
         if(this.cursors.right.isDown && this.cursors.down.isDown) {
-            player.play('walkRight', 30);    
+            this.player.play('walkRight', 30);    
         }
         if(this.cursors.right.isDown && this.cursors.up.isDown) {
-            player.play('walkUp', 30);    
+            this.player.play('walkUp', 30);    
         }
         if(this.cursors.left.isDown && this.cursors.down.isDown) {
-            player.play('walkDown', 30);    
+            this.player.play('walkDown', 30);    
         }
     },
 
@@ -247,32 +263,32 @@ day.prototype =  {
 		var speed = 500;
 
         if (this.cursors.up.isDown) {
-            player.body.velocity.x = -speed;
+            this.player.body.velocity.x = -speed;
         }
         else if (this.cursors.down.isDown) {
-            player.body.velocity.x = speed;
+            this.player.body.velocity.x = speed;
         }
         else {
-            player.body.velocity.x = 0;
+            this.player.body.velocity.x = 0;
         }
 
         if (this.cursors.left.isDown) {
-            player.body.velocity.y = speed;
+            this.player.body.velocity.y = speed;
         }
         else if (this.cursors.right.isDown) {
-            player.body.velocity.y = -speed;
+            this.player.body.velocity.y = -speed;
         }
         else {
-            player.body.velocity.y = 0;
+            this.player.body.velocity.y = 0;
         }
         if (this.cursors.left.isDown && this.cursors.up.isDown || this.cursors.down.isDown && this.cursors.right.isDown){
         	speed = 250;
         	if(this.cursors.left.isDown && this.cursors.up.isDown) {
-        		player.body.velocity.x = -speed;
-        		player.body.velocity.y = speed;
+        		this.player.body.velocity.x = -speed;
+        		this.player.body.velocity.y = speed;
         	}else{
-        		player.body.velocity.x = speed;
-        		player.body.velocity.y = -speed;
+        		this.player.body.velocity.x = speed;
+        		this.player.body.velocity.y = -speed;
         	}
         }else{
         	speed = 100;

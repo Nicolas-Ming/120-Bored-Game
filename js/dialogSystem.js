@@ -9,7 +9,7 @@ dialogSystem = function(game){
 	this.TEXT_X = 25;			// text w/in dialog box x-position
 	this.TEXT_Y = 330;			// text w/in dialog box y-position
 	this.TEXT_SIZE = 20;		// text font size (in pixels)
-	this.TEXT_MAX_WIDTH = 315;	// max width of text within box
+	this.TEXT_MAX_WIDTH = 500;	// max width of text within box
 
 	this.NEXT_TEXT = '[SPACE]';	// text to display for next prompt
 	this.NEXT_X = 775;			// next text prompt x-position
@@ -82,7 +82,7 @@ dialogSystem.prototype = {
 		// make sure we're not out of conversations
 		if(this.dialogConvo >= this.dialog.length) {
 			console.log('End of Conversations');
-      game.state.start('night');
+      		game.state.start('night');
 		} else {
 			// set current speaker
 			this.dialogSpeaker = this.dialog[this.dialogConvo][this.dialogLine]['speaker'];
