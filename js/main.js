@@ -2,7 +2,8 @@ var game = new Phaser.Game(1080,720);
 
 
 //global variables
-console.log('preload: main')
+console.log('preload: main');
+let counter = 0;
 
 //state management
 game.state.add('boot',boot);
