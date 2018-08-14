@@ -8,7 +8,9 @@ console.log('preload: main')
 game.state.add('boot',boot);
 game.state.add('mainMenu',mainMenu);
 game.state.add('day',day);
+game.state.add('dialogSystem', dialogSystem);
+game.state.add('boot',boot);
 //game.state.add('night',night);
 //game.state.add('talking',talking);
 //game.state.add('settings',settings);
-game.state.start('boot'); 
+game.state.start('boot');
