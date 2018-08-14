@@ -11,20 +11,17 @@ day.prototype =  {
 
 		game.load.image('tile', 'assets/img/tileee.png');
 		game.load.image('rug', 'assets/img/rugwarped.png');
-		//game.load.image('cactus', 'assets/img/cactusboi/cactusnoface.png');
+		game.load.image('cactusnoface', 'assets/img/cactusboi/cactusnoface.png');
 		game.load.image('lwall', 'assets/img/wallTileLeft.png');
 		game.load.image('rwall', 'assets/img/wallTileRight.png');
-		game.load.image('bed', 'assets/img/room/bed.png');
+		game.load.image('bed', 'assets/img/bed.png');
 
-		game.load.spritesheet('player', 'assets/img/testguy.png',32,32);
-
-		//-=-= following added by warner
 		game.load.image('cactusboi', 'assets/img/cactusboi/cactusboi.png');
 		game.load.image('lefthand', 'assets/img/cactusboi/lefthand.png');
 		game.load.image('righthand', 'assets/img/cactusboi/righthand.png');
 		game.load.image('jacket', 'assets/img/cactusboi/jacket.png');
 		game.load.image('hat', 'assets/img/cactusboi/hat.png');
-		game.load.image('cactusnoface', 'assets/img/cactusboi/cactusnoface.png');
+		//game.load.image('cactusnoface', 'assets/img/cactusboi/cactusnoface.png');
 
 		game.load.image('pupperfull', 'assets/img/pupper/pupperfull.png');
 		game.load.image('justdog', 'assets/img/pupper/justdog.png');
@@ -32,12 +29,13 @@ day.prototype =  {
 		game.load.image('headscarf', 'assets/img/pupper/headscarf.png');
 
 		game.load.image('bigvase', 'assets/img/portrait/bigvase.png');
-    game.load.image('portrait', 'assets/img/portrait/portrait.png');
-    game.load.image('portraitladyfull', 'assets/img/portrait/portraitladyfull.png');
-    game.load.image('scarf', 'assets/img/portrait/scarf.png');
-    game.load.image('smallvase', 'assets/img/portrait/smallvase.png');
+    	game.load.image('portrait', 'assets/img/portrait/portrait.png');
+    	game.load.image('portraitladyfull', 'assets/img/portrait/portraitladyfull.png');
+   		game.load.image('scarf', 'assets/img/portrait/scarf.png');
+    	game.load.image('smallvase', 'assets/img/portrait/smallvase.png');
 
-		//-=-=
+
+		game.load.spritesheet('player', 'assets/img/testguy.png',32,32);
 
         // Add and enable the plug-in.
         game.plugins.add(new Phaser.Plugin.Isometric(game));
@@ -55,9 +53,7 @@ day.prototype =  {
         isoGroup = game.add.group();
         leftWall = game.add.group();
 
-				//-=-= added by Warner
-				cactusnoface     = game.add.isoSprite(0, 0, 0, 'cactusnoface', isoGroup);
-		    hat              = game.add.sprite(680, 100, 'hat');
+        	hat              = game.add.sprite(680, 100, 'hat');
 		    jacket           = game.add.sprite(300, 300, 'jacket');
 		    lefthand         = game.add.sprite(1315, 550, 'lefthand');
 		    righthand        = game.add.sprite(1300, 550, 'righthand');
@@ -72,8 +68,8 @@ day.prototype =  {
 		    portrait         = game.add.sprite(1200, 300, 'portrait');
 		    bigvase          = game.add.sprite(1290, 530, 'bigvase');
 
-				hat.scale.setTo(0.4);
-		    cactusnoface.scale.setTo(0.4);
+			hat.scale.setTo(0.4);
+		    //cactusnoface.scale.setTo(0.4);
 		    jacket.scale.setTo(0.4);
 		    lefthand.scale.setTo(0.4);
 		    righthand.scale.setTo(0.4);
@@ -82,11 +78,11 @@ day.prototype =  {
 		    bodyscarf.scale.setTo(0.4);
 		    headscarf.scale.setTo(0.4);
 
-				portrait.scale.setTo(0.4);
+			portrait.scale.setTo(0.4);
 		    bigvase.scale.setTo(0.4);
 
-				hat.anchor.setTo(0.5);
-		    cactusnoface.anchor.setTo(0.5);
+			hat.anchor.setTo(0.5);
+		    //cactusnoface.anchor.setTo(0.5);
 		    jacket.anchor.setTo(0.5);
 		    lefthand.anchor.setTo(0.5);
 		    righthand.anchor.setTo(0.5);
@@ -95,39 +91,43 @@ day.prototype =  {
 		    bodyscarf.anchor.setTo(0.5);
 		    headscarf.anchor.setTo(0.5);
 
-				portrait.anchor.setTo(0.5);
+			portrait.anchor.setTo(0.5);
 		    bigvase.anchor.setTo(0.5);
 
-				//-=-=
 
         // Set the global gravity for IsoArcade.
         game.physics.isoArcade.gravity.setTo(0, 0, -500);
 
         this.spawnTiles();
-        rug = game.add.isoSprite(350, 350, 0, 'rug', 0, isoGroup); //it was here that i realized the x,y coords were iso as well
+        rug = game.add.isoSprite(300, 300, 0, 'rug', 0, isoGroup);
         rug.anchor.set(0.5);
-				rug.scale.x = 0.6;
-        rug.scale.y = 0.6;
         //rug.rotation = .3;
-				//-=-= cactus edited by warner
-        //game.add.isoSprite(0, 16, 0, 'cactusnoface', 0, isoGroup);
-        //cactusnoface.anchor.set(1);
-				//cactusnoface.anchor.setTo(0.5);
-        //cactusnoface.scale.x = .4;
-        //cactusnoface.scale.y = .4;
+        cactusnoface = game.add.isoSprite(72, 46, 0, 'cactusnoface', 0, isoGroup);
+        cactusnoface.anchor.set(1);
+        game.physics.isoArcade.enable(cactusnoface);
+        cactusnoface.body.immovable = true;
+        cactusnoface.body.allowGravity = false;
+        cactusnoface.body.setSize(30,30,10,-30,-35,-10);
+        cactusnoface.scale.x = .4;
+        cactusnoface.scale.y = .4;
+
         bed = game.add.isoSprite(692, 96, 0, 'bed', 0, isoGroup);
         bed.anchor.set(0.5);
-        bed.scale.x = -0.4;
-        bed.scale.y = 0.4;
-        bed.rotation = 0.3;
+        game.physics.isoArcade.enable(bed);
+        bed.body.immovable = true;
+        bed.body.allowGravity = false;
+        bed.body.setSize(20000,1000,0,-80,-35,-10);
+        bed.scale.x = .4;
+        bed.scale.y = .4;
+        bed.rotation = .3;
         // Create another cube as our 'player', and set it up just like the cubes above.
         player = game.add.isoSprite(128, 128, 20, 'player', 1, isoGroup);
         player.anchor.set(.5);
 
         game.physics.isoArcade.enable(player,Phaser.Camera.FOLLOW_LOCKON);
         player.body.collideWorldBounds = true;
-        game.camera.scale.x = 1.5;
-        game.camera.scale.y = 1.5;
+        // game.camera.scale.x = 1.5;
+        // game.camera.scale.y = 1.5;
         player.scale.x = 2;
         player.scale.y = 2;
 
@@ -170,6 +170,9 @@ day.prototype =  {
     render: function() {
         game.debug.cameraInfo(game.camera, 32, 32);
         game.debug.spriteCoords(player, 32, 500);
+        game.debug.body(bed);
+        game.debug.body(cactusnoface);
+        game.debug.body(player);
 
     },
 	// tile creation needs work
@@ -192,15 +195,15 @@ day.prototype =  {
             		tile = game.add.isoSprite(xx, yy, 0, 'tile', 0, isoGroup);
                 	tile.anchor.set(1, 1);
             	}
-
+                
             }
         }
     },
 
     checkPlayer: function(){
     	if (Phaser.Rectangle.intersects(player.getBounds(),cactusnoface.getBounds()) && this.interact.justPressed()){
-    		console.log('cactusnoface');
-				this.cactusboi();
+    		console.log('cactus');
+    		this.cactusboi();
 
     	}
     },
@@ -220,16 +223,16 @@ day.prototype =  {
             player.play('walkRight', 30);
         }
         if(this.cursors.left.isDown && this.cursors.up.isDown) {
-        	player.play('walkLeft', 30);
+        	player.play('walkLeft', 30);	
         }
         if(this.cursors.right.isDown && this.cursors.down.isDown) {
-            player.play('walkRight', 30);
+            player.play('walkRight', 30);    
         }
         if(this.cursors.right.isDown && this.cursors.up.isDown) {
-            player.play('walkUp', 30);
+            player.play('walkUp', 30);    
         }
         if(this.cursors.left.isDown && this.cursors.down.isDown) {
-            player.play('walkDown', 30);
+            player.play('walkDown', 30);    
         }
     },
 
@@ -268,6 +271,7 @@ day.prototype =  {
         	speed = 100;
         }
 	},
+
 	cactusboi: function(){
       console.log('cactusboi');
       //hat.sendToBack();						// move to back of display list
@@ -309,5 +313,5 @@ day.prototype =  {
       });
 
 
-  }
+   }
 }
