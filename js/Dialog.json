@@ -2,11 +2,14 @@
 	[
 		{
 			"speaker" : "cactusboi",
+
 			"dialog" : "AHHHHHHHHHHH",
+
 			"newSpeaker" : "true"
 		},
 		{
 			"speaker" : "cactusboi",
+			
 			"dialog" : "Nah just kidding, I'm a cactus this is just how it is, life is pain, but that goes for me, what about you why do you look like you are in pain."
 		},
 		{	
@@ -29,6 +32,7 @@
 			"speaker" : "",
 			"dialog" : "As you try to recall what you need to tell it so you can get help your mind begins fog and before you know it you are passed out on the ground."
 		}
+
 	]	
 	
 ]

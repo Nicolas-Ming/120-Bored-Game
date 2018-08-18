@@ -2,8 +2,11 @@
 
 dialogSystem = function(game){
 	// dialog constants
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 4a7e627d423303c057b8d2ad3c4e17d36fdfeed0
 	this.DBOX_X = 0;			// dialog box x-position
 	this.DBOX_Y = 280;			// dialog box y-position
 	this.DBOX_FONT = 'font';	// dialog box font key
@@ -38,9 +41,12 @@ dialogSystem = function(game){
 
 dialogSystem.prototype = {
 	create: function() {
+<<<<<<< HEAD
 		this.stage.backgroundColor = 0xf6997a;
 		this.dialButA = this.add.button(-1000, 200, 'dialButA', this.A_Dialog);
 		this.dialButB = this.add.button(-1000, 200, 'dialButB', this.B_Dialog);
+=======
+>>>>>>> 4a7e627d423303c057b8d2ad3c4e17d36fdfeed0
 		// parse dialog from JSON file
 		this.dialog = JSON.parse(this.game.cache.getText('dialog'));
 
@@ -86,6 +92,7 @@ dialogSystem.prototype = {
 
 		// make sure we're not out of conversations
 		if(this.dialogConvo >= this.dialog.length) {
+<<<<<<< HEAD
 			this.dialogbox.kill();
 			this.add.tween(this.dialButA).to({ x: 100, y: 200}, 500, Phaser.Easing.Bounce.out, true);
 			this.add.tween(this.dialButA.scale).to({ x: 0.5, y: 0.5}, 500, Phaser.Easing.Default, true);
@@ -94,6 +101,10 @@ dialogSystem.prototype = {
 
 			console.log('End of Conversations');
 
+=======
+			console.log('End of Conversations');
+      game.state.start('night');
+>>>>>>> 4a7e627d423303c057b8d2ad3c4e17d36fdfeed0
 		} else {
 			// set current speaker
 			this.dialogSpeaker = this.dialog[this.dialogConvo][this.dialogLine]['speaker'];
@@ -134,6 +145,7 @@ dialogSystem.prototype = {
 			this.dialogLastSpeaker = this.dialogSpeaker;
 
 		}
+<<<<<<< HEAD
 	},
 	A_Dialog: function(){
 		console.log('A_Dialog');
@@ -146,5 +158,7 @@ dialogSystem.prototype = {
 		//this.dialButA.kill();
 		game.state.start('night');
 
+=======
+>>>>>>> 4a7e627d423303c057b8d2ad3c4e17d36fdfeed0
 	}
 };

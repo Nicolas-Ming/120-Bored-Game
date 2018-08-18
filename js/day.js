@@ -50,6 +50,14 @@ day.prototype =  {
 
 		game.load.bitmapFont('font', 'assets/img/gem.png', 'assets/img/gem.xml');
 
+		game.load.image('dialogbox', 'assets/img/dialogbox.png');
+
+		game.load.text('dialog', 'js/Dialog.json');
+
+		this.load.path = 'assets/img/';
+
+		game.load.bitmapFont('font', 'gem.png', 'gem.xml');
+
         // Add and enable the plug-in.
         game.plugins.add(new Phaser.Plugin.Isometric(game));
 
@@ -224,8 +232,17 @@ day.prototype =  {
             if (Phaser.Rectangle.intersects(player.getBounds(),cactusboi.getBounds()) && this.interact.justPressed()){
                 console.log('cactus');
                 this.cactusboi();
+
             }
         }
+    },
+
+    checkPlayer: function(){
+    	if (Phaser.Rectangle.intersects(player.getBounds(),cactusnoface.getBounds()) && this.interact.justPressed()){
+    		console.log('cactus');
+    		this.cactusboi();
+
+    	}
     },
 
 	playerAnimate: function(){
@@ -338,3 +355,4 @@ day.prototype =  {
 
    }
 }
+
