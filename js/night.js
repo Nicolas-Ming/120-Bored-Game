@@ -35,7 +35,7 @@ var night = function(game){
 night.prototype = {
 	create: function() {
 		// parse dialog from JSON file
-		this.dialog = JSON.parse(this.game.cache.getText('dialogtwo'));
+		this.dialog = JSON.parse(this.game.cache.getText('dialogTwo'));
 
 		// add dialog box sprite
 		this.dialogbox = this.add.sprite(this.DBOX_X, this.DBOX_Y, 'dialogbox');

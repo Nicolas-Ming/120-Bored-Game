@@ -2,6 +2,7 @@
 
 dialogSystem = function(game){
 	// dialog constants
+
 	this.DBOX_X = 0;			// dialog box x-position
 	this.DBOX_Y = 280;			// dialog box y-position
 	this.DBOX_FONT = 'font';	// dialog box font key
@@ -36,6 +37,11 @@ dialogSystem = function(game){
 
 dialogSystem.prototype = {
 	create: function() {
+
+		this.stage.backgroundColor = 0xf6997a;
+		this.dialButA = this.add.button(-1000, 200, 'dialButA', this.A_Dialog);
+		this.dialButB = this.add.button(-1000, 200, 'dialButB', this.B_Dialog);
+
 		// parse dialog from JSON file
 		this.dialog = JSON.parse(this.game.cache.getText('dialog'));
 
@@ -81,8 +87,13 @@ dialogSystem.prototype = {
 
 		// make sure we're not out of conversations
 		if(this.dialogConvo >= this.dialog.length) {
+			this.dialogbox.kill();
+			this.add.tween(this.dialButA).to({ x: 100, y: 200}, 500, Phaser.Easing.Bounce.out, true);
+			this.add.tween(this.dialButA.scale).to({ x: 0.5, y: 0.5}, 500, Phaser.Easing.Default, true);
+			this.add.tween(this.dialButB).to({ x: 100, y: 400}, 500, Phaser.Easing.Bounce.out, true);
+			this.add.tween(this.dialButB.scale).to({ x: 0.5, y: 0.5}, 500, Phaser.Easing.Default, true);
+
 			console.log('End of Conversations');
-      		game.state.start('night');
 		} else {
 			// set current speaker
 			this.dialogSpeaker = this.dialog[this.dialogConvo][this.dialogLine]['speaker'];
@@ -123,5 +134,17 @@ dialogSystem.prototype = {
 			this.dialogLastSpeaker = this.dialogSpeaker;
 
 		}
+	},
+	A_Dialog: function(){
+		console.log('A_Dialog');
+		//dialButB.kill();
+		game.state.start('night');
+
+	},
+	B_Dialog: function(){
+		console.log('B_Dialog');
+		//this.dialButA.kill();
+		game.state.start('night');
+
 	}
 };
