@@ -2,9 +2,10 @@ var game = new Phaser.Game(1080,720);
 
 
 //global variables
-var daynum = 1;
-var nightnum = 0;
-console.log('preload: main')
+daynum = 1;
+nightnum = 0;
+console.log('preload: main');
+let counter = 0;
 
 //state management
 game.state.add('boot',boot);

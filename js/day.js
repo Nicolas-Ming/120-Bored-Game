@@ -4,6 +4,7 @@ var day = function() {
 	//local variables
 	this.x = null;
 	this.y = null;
+
 };
 day.prototype =  {
 	preload: function() {
@@ -29,12 +30,25 @@ day.prototype =  {
 		game.load.image('headscarf', 'assets/img/pupper/headscarf.png');
 
 		game.load.image('bigvase', 'assets/img/portrait/bigvase.png');
-    	game.load.image('portrait', 'assets/img/portrait/portrait.png');
-    	game.load.image('portraitladyfull', 'assets/img/portrait/portraitladyfull.png');
-   		game.load.image('scarf', 'assets/img/portrait/scarf.png');
-    	game.load.image('smallvase', 'assets/img/portrait/smallvase.png');
+        game.load.image('portrait', 'assets/img/portrait/portrait.png');
+        game.load.image('portraitladyfull', 'assets/img/portrait/portraitladyfull.png');
+   	    game.load.image('scarf', 'assets/img/portrait/scarf.png');
+        game.load.image('smallvase', 'assets/img/portrait/smallvase.png');
 
-		game.load.spritesheet('this.player', 'assets/img/testguy.png',32,32);
+		game.load.image('dialButB', 'assets/img/buttons/dialButB.png');
+		game.load.image('dialButA', 'assets/img/buttons/dialButA.png');
+		game.load.image('B_Story', 'assets/img/buttons/B_Story.png');
+		game.load.image('A_Story', 'assets/img/buttons/A_Story.png');
+
+
+		game.load.image('player', 'assets/img/playerC.png');
+
+		game.load.image('dialogbox', 'assets/img/dialogbox.png');
+
+		game.load.text('dialog', 'js/Dialog.json');
+        game.load.text('dialogTwo', 'js/DialogTwo.json');
+
+		game.load.bitmapFont('font', 'assets/img/gem.png', 'assets/img/gem.xml');
 
 		game.load.image('dialogbox', 'assets/img/dialogbox.png');
 
@@ -61,13 +75,13 @@ day.prototype =  {
         leftWall = game.add.group();
 
         	hat              = game.add.sprite(680, 100, 'hat');
-		    jacket           = game.add.sprite(300, 300, 'jacket');
+		    jacket           = game.add.sprite(160, 450, 'jacket');
 		    lefthand         = game.add.sprite(1315, 550, 'lefthand');
 		    righthand        = game.add.sprite(1300, 550, 'righthand');
 
 		    justdog          = game.add.sprite(350, 550, 'justdog');
-		    bodyscarf        = game.add.sprite(800, 650, 'bodyscarf');
-		    headscarf        = game.add.sprite(740, 130, 'headscarf');
+		    bodyscarf        = game.add.sprite(100, 530, 'bodyscarf');
+		    headscarf        = game.add.sprite(240, 730, 'headscarf');
 
 		   //tileee         = game.add.sprite(800, 500, 'tileee');
 		    //this.spawnTiles();
@@ -135,16 +149,16 @@ day.prototype =  {
         bed.scale.x = .4;
         bed.scale.y = .4;
         bed.rotation = .3;
-        // Create another cube as our 'this.player', and set it up just like the cubes above.
-        this.player = game.add.isoSprite(700, 20, 0, 'this.player', 12, isoGroup);
+        // Create another cube as our 'player', and set it up just like the cubes above.
+        this.player = game.add.isoSprite(700, 20, 0, 'player', 1, isoGroup);
         this.player.anchor.set(.5);
 
         game.physics.isoArcade.enable(this.player,Phaser.Camera.FOLLOW_LOCKON);
         this.player.body.collideWorldBounds = true;
-        // game.camera.scale.x = 1.5;
-        // game.camera.scale.y = 1.5;
-        this.player.scale.x = 2;
-        this.player.scale.y = 2;
+        game.camera.scale.x = 1.5;
+        game.camera.scale.y = 1.5;
+        this.player.scale.x = .3;
+        this.player.scale.y = .3;
 
 
         // Set up our controls.
@@ -157,10 +171,10 @@ day.prototype =  {
             Phaser.Keyboard.DOWN,
         ]);
 
-        var walkUp = this.player.animations.add('walkUp',[36,37,38]);
-        var walkDown = this.player.animations.add('walkDown',[0,1,2]);
-        var walkLeft = this.player.animations.add('walkLeft',[12,13,14]);
-        var walkRight = this.player.animations.add('walkRight',[24,25,26]);
+        // var walkUp = player.animations.add('walkUp',[36,37,38]);
+        // var walkDown = player.animations.add('walkDown',[0,1,2]);
+        // var walkLeft = player.animations.add('walkLeft',[12,13,14]);
+        // var walkRight = player.animations.add('walkRight',[24,25,26]);
 
 
         game.camera.follow(this.player);
@@ -182,12 +196,12 @@ day.prototype =  {
 
 
 	},
-    render: function() {
+    render: function() {/*
         game.debug.cameraInfo(game.camera, 32, 32);
-        game.debug.spriteCoords(this.player, 32, 500);
-        // game.debug.body(bed);
-        //game.debug.body(cactusnoface);
-        // game.debug.body(this.player);
+        game.debug.spriteCoords(player, 32, 500);
+        game.debug.body(bed);
+        game.debug.body(cactusnoface);
+        game.debug.body(player); //*/
 
     },
 	// tile creation needs work
@@ -210,7 +224,23 @@ day.prototype =  {
             		tile = game.add.isoSprite(xx, yy, 0, 'tile', 0, isoGroup);
                 	tile.anchor.set(1, 1);
             	}
-                
+
+            }
+        }
+    },
+
+    checkPlayer: function(){
+    	if (daynum == 1){
+            if (Phaser.Rectangle.intersects(player.getBounds(),cactusnoface.getBounds()) && this.interact.justPressed()){
+                console.log('cactus');
+                this.cactusboi();
+            }
+        }
+        if (daynum == 2){
+            if (Phaser.Rectangle.intersects(player.getBounds(),cactusboi.getBounds()) && this.interact.justPressed()){
+                console.log('cactus');
+                this.cactusboi();
+
             }
         }
     },
@@ -233,30 +263,32 @@ day.prototype =  {
 
 	playerAnimate: function(){
 		if (this.cursors.up.isDown && !this.cursors.left.isDown && !this.cursors.right.isDown) {
-            this.player.play('walkUp', 30);
+            this.player.x = -1;
+            //player.play('walkUp', 30);
         }
         if (this.cursors.down.isDown && !this.cursors.left.isDown && !this.cursors.right.isDown) {
-            this.player.play('walkDown', 30);
+            this.player.x = 1;
+            //player.play('walkDown', 30);
         }
 
-        if (this.cursors.left.isDown && !this.cursors.up.isDown && !this.cursors.down.isDown) {
-            this.player.play('walkLeft', 30);
-        }
-        if (this.cursors.right.isDown && !this.cursors.up.isDown && !this.cursors.down.isDown) {
-            this.player.play('walkRight', 30);
-        }
-        if(this.cursors.left.isDown && this.cursors.up.isDown) {
-        	this.player.play('walkLeft', 30);	
-        }
-        if(this.cursors.right.isDown && this.cursors.down.isDown) {
-            this.player.play('walkRight', 30);    
-        }
-        if(this.cursors.right.isDown && this.cursors.up.isDown) {
-            this.player.play('walkUp', 30);    
-        }
-        if(this.cursors.left.isDown && this.cursors.down.isDown) {
-            this.player.play('walkDown', 30);    
-        }
+        // if (this.cursors.left.isDown && !this.cursors.up.isDown && !this.cursors.down.isDown) {
+        //     player.play('walkLeft', 30);
+        // }
+        // if (this.cursors.right.isDown && !this.cursors.up.isDown && !this.cursors.down.isDown) {
+        //     player.play('walkRight', 30);
+        // }
+        // if(this.cursors.left.isDown && this.cursors.up.isDown) {
+        // 	player.play('walkLeft', 30);
+        // }
+        // if(this.cursors.right.isDown && this.cursors.down.isDown) {
+        //     player.play('walkRight', 30);
+        // }
+        // if(this.cursors.right.isDown && this.cursors.up.isDown) {
+        //     player.play('walkUp', 30);
+        // }
+        // if(this.cursors.left.isDown && this.cursors.down.isDown) {
+        //     player.play('walkDown', 30);
+        // }
     },
 
 	playerMove: function(){
@@ -298,28 +330,28 @@ day.prototype =  {
 	cactusboi: function(){
       console.log('cactusboi');
       //hat.sendToBack();						// move to back of display list
-      game.add.tween(hat).to({ x: 800, y: 260}, 900, Phaser.Easing.Default, true);
-      game.add.tween(hat).to({angle: -360}, 900, Phaser.Easing.Cubic.In, true);
+      game.add.tween(hat).to({ x: 800, y: 260}, 1500, Phaser.Easing.Default, true);
+      game.add.tween(hat).to({angle: -360}, 1400, Phaser.Easing.Cubic.In, true);
 
       //cactusnoface.sendToBack();				// move to back of display list
-      game.add.tween(cactusnoface).to({ x: 760, y: 340}, 900, Phaser.Easing.Default, true);
-      game.add.tween(cactusnoface).to({angle: 360}, 900, Phaser.Easing.Cubic.In, true);
+      game.add.tween(cactusnoface).to({ x: 760, y: 340}, 1500, Phaser.Easing.Default, true);
+      game.add.tween(cactusnoface).to({angle: 360}, 1400, Phaser.Easing.Cubic.In, true);
 
       //jacket.sendToBack();				// move to back of display list
-      game.add.tween(jacket).to({ x: 825, y: 420}, 900, Phaser.Easing.Default, true);
-      game.add.tween(jacket).to({angle: -360}, 900, Phaser.Easing.Cubic.In, true);
+      game.add.tween(jacket).to({ x: 825, y: 420}, 1500, Phaser.Easing.Default, true);
+      game.add.tween(jacket).to({angle: -360}, 1400, Phaser.Easing.Cubic.In, true);
 
-      game.add.tween(lefthand).to({ x: 765, y: 500}, 900, Phaser.Easing.Bounce.out, true);
-      game.add.tween(lefthand).to({angle: 360}, 900, Phaser.Easing.Cubic.In, true);
+      game.add.tween(lefthand).to({ x: 765, y: 500}, 1500, Phaser.Easing.Bounce.out, true);
+      game.add.tween(lefthand).to({angle: 360}, 1400, Phaser.Easing.Cubic.In, true);
 
       //righthand code made after minimal refactoring, hence difference in appearance
-      game.add.tween(righthand).to({ x: 875, y: 355}, 900, Phaser.Easing.Bounce.out, true);
-      game.add.tween(righthand).to({angle: -360}, 900, Phaser.Easing.Cubic.In, true);
+      game.add.tween(righthand).to({ x: 875, y: 355}, 1500, Phaser.Easing.Bounce.out, true);
+      game.add.tween(righthand).to({angle: -360}, 1400, Phaser.Easing.Cubic.In, true);
 
 
 
       // set a kill timer for trail effect
-      game.time.events.add(930, function() {
+      game.time.events.add(1500, function() {
         hat.kill(),
         cactusnoface.kill(),
         jacket.kill(),
@@ -329,13 +361,14 @@ day.prototype =  {
         cactusboi = game.add.sprite(825, 420, 'cactusboi');
         cactusboi.anchor.setTo(0.5);
         cactusboi.scale.setTo(0.4);
-				game.add.tween(cactusboi).to({ x: 800, y: 250}, 900, Phaser.Easing.Bounce.out, true);
-				game.add.tween(cactusboi.scale).to({ x: 0.3, y: 0.3}, 900, Phaser.Easing.Default, true);
+				game.add.tween(cactusboi).to({ x: -800, y: 50}, 2000, Phaser.Easing.Bounce.out, true);
+				game.add.tween(cactusboi.scale).to({ x: 2, y: 2}, 2000, Phaser.Easing.Default, true);
 
         console.log(' end cactusboi');
       });
 
-      game.time.events.add(3000, function() {game.state.start('dialogSystem')});
+      game.time.events.add(2700, function() {game.state.start('dialogSystem')});
 
    }
 }
+
