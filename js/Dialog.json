@@ -1,0 +1,34 @@
+[
+	[
+		{
+			"speaker" : "cactusboi",
+			"dialog" : "AHHHHHHHHHHH",
+			"newSpeaker" : "true"
+		},
+		{
+			"speaker" : "cactusboi",
+			"dialog" : "Nah just kidding, I'm a cactus this is just how it is, life is pain, but that goes for me, what about you why do you look like you are in pain."
+		},
+		{	
+			"speaker" : "",
+			"dialog" : "As you take a step back in utter shock, you regain yourself and decide to tell it your situation"
+		},
+		{
+			"speaker" : "cactusboi",
+			"dialog" : "I have so many friends, I can help."
+		},
+		{
+			"speaker" : "",
+			"dialog" : "You think to yourself that he totally doesn’t have many friends, other than yourself and that whole ass dog."
+		},
+		{
+			"speaker" : "cactusboi",
+			"dialog" : "What do you say, you want me to help out."
+		},		
+		{
+			"speaker" : "",
+			"dialog" : "As you try to recall what you need to tell it so you can get help your mind begins fog and before you know it you are passed out on the ground."
+		}
+	]	
+	
+]

@@ -1,5 +1,9 @@
-var night = function(game){
+// dialogSystem state
+
+dialogSystem = function(game){
 	// dialog constants
+
+
 	this.DBOX_X = 0;			// dialog box x-position
 	this.DBOX_Y = 280;			// dialog box y-position
 	this.DBOX_FONT = 'font';	// dialog box font key
@@ -7,7 +11,7 @@ var night = function(game){
 	this.TEXT_X = 25;			// text w/in dialog box x-position
 	this.TEXT_Y = 330;			// text w/in dialog box y-position
 	this.TEXT_SIZE = 20;		// text font size (in pixels)
-	this.TEXT_MAX_WIDTH = 500;	// max width of text within box
+	this.TEXT_MAX_WIDTH = 315;	// max width of text within box
 
 	this.NEXT_TEXT = '[SPACE]';	// text to display for next prompt
 	this.NEXT_X = 775;			// next text prompt x-position
@@ -25,17 +29,20 @@ var night = function(game){
 	this.nextText = null;			// player prompt text to continue typing
 
 	// character variables
-	//this.cactusboi = null;
+	this.cactusboi = null;
 
 
 	this.OFFSCREEN_X = -500;	// x,y values to place characters offscreen
 	this.OFFSCREEN_Y = 1000;	//
 };
 
-night.prototype = {
+dialogSystem.prototype = {
 	create: function() {
+		this.stage.backgroundColor = 0xf6997a;
+		this.dialButA = this.add.button(-1000, 200, 'dialButA', this.A_Dialog);
+		this.dialButB = this.add.button(-1000, 200, 'dialButB', this.B_Dialog);
 		// parse dialog from JSON file
-		this.dialog = JSON.parse(this.game.cache.getText('dialogTwo'));
+		this.dialog = JSON.parse(this.game.cache.getText('dialog'));
 
 		// add dialog box sprite
 		this.dialogbox = this.add.sprite(this.DBOX_X, this.DBOX_Y, 'dialogbox');
@@ -48,7 +55,7 @@ night.prototype = {
 		// add character dialog images
 		this.cactusboi = this.add.sprite(this.OFFSCREEN_X, this.DBOX_Y+8, 'cactusboi');
 		this.cactusboi.anchor.setTo(0, 1);
-    	this.cactusboi.sendToBack();
+    this.cactusboi.sendToBack();
 
 		// debug
 		console.log(this.dialog);
@@ -79,20 +86,25 @@ night.prototype = {
 
 		// make sure we're not out of conversations
 		if(this.dialogConvo >= this.dialog.length) {
+			this.dialogbox.kill();
+			this.add.tween(this.dialButA).to({ x: 100, y: 200}, 500, Phaser.Easing.Bounce.out, true);
+			this.add.tween(this.dialButA.scale).to({ x: 0.5, y: 0.5}, 500, Phaser.Easing.Default, true);
+			this.add.tween(this.dialButB).to({ x: 100, y: 400}, 500, Phaser.Easing.Bounce.out, true);
+			this.add.tween(this.dialButB.scale).to({ x: 0.5, y: 0.5}, 500, Phaser.Easing.Default, true);
+
 			console.log('End of Conversations');
-			daynum++;
-      		game.state.start('day',true,true);
+
 		} else {
 			// set current speaker
 			this.dialogSpeaker = this.dialog[this.dialogConvo][this.dialogLine]['speaker'];
 
-			// if(this.dialog[this.dialogConvo][this.dialogLine]['newSpeaker']) {
-			// 	if(this.dialogLastSpeaker) {
-   //        			dialogLastSpeaker.sendToBack();
-			// 		this.add.tween(this[this.dialogLastSpeaker]).to({x: this.OFFSCREEN_X}, 500, Phaser.Easing.Linear.None, true);
-			// 	}
-			// 	this.add.tween(this[this.dialogSpeaker]).to({x: this.DBOX_X+50, y: this.DBOX_Y + 420}, 500, Phaser.Easing.Linear.None, true);
-			// }
+			if(this.dialog[this.dialogConvo][this.dialogLine]['newSpeaker']) {
+				if(this.dialogLastSpeaker) {
+          dialogLastSpeaker.sendToBack();
+					this.add.tween(this[this.dialogLastSpeaker]).to({x: this.OFFSCREEN_X}, 500, Phaser.Easing.Linear.None, true);
+				}
+				this.add.tween(this[this.dialogSpeaker]).to({x: this.DBOX_X+50, y: this.DBOX_Y + 420}, 500, Phaser.Easing.Linear.None, true);
+			}
 
 			// build dialog (concatenate speaker + line of text)
 			this.dialogLines = this.dialog[this.dialogConvo][this.dialogLine]['speaker'].toUpperCase() + ': ' + this.dialog[this.dialogConvo][this.dialogLine]['dialog'];
@@ -122,5 +134,17 @@ night.prototype = {
 			this.dialogLastSpeaker = this.dialogSpeaker;
 
 		}
+	},
+	A_Dialog: function(){
+		console.log('A_Dialog');
+		//dialButB.kill();
+		game.state.start('night');
+
+	},
+	B_Dialog: function(){
+		console.log('B_Dialog');
+		//this.dialButA.kill();
+		game.state.start('night');
+
 	}
 };

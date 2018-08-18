@@ -3,6 +3,7 @@ var boot = function() {
 };
 boot.prototype =  {
 	preload: function() {
+
 		console.log('preload: boot');
 		game.state.start('mainMenu');
 	},
