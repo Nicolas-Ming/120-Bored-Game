@@ -80,6 +80,9 @@ phone.prototype =  {
             dotdotdot.kill();
             game.add.tween(message2).to({ x: 550, y: 276}, 100, Phaser.Easing.Default, true);
         }
+        if(counter == 3){
+            game.state.start('night');
+        }
 
 
 	},

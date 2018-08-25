@@ -2,10 +2,16 @@ var game = new Phaser.Game(1080,720);
 
 
 //global variables
-daynum = 1;
-nightnum = 0;
+var ender = 0;
+var counter = 0;
+var cactusEndX = 260;
+var cactusEndY = 140;
+var startCactusNoFaceX = 860;
+var startCactusNoFaceY = 475;
+var endCactusNoFaceX = 500;
+var endCactusNoFaceY = 500;
+var emitter;
 console.log('preload: main');
-let counter = 0;
 
 //state management
 game.state.add('boot',boot);

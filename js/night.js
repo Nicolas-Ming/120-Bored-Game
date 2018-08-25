@@ -1,126 +1,153 @@
-var night = function(game){
-	// dialog constants
-	this.DBOX_X = 0;			// dialog box x-position
-	this.DBOX_Y = 280;			// dialog box y-position
-	this.DBOX_FONT = 'font';	// dialog box font key
+/*
+120 boisssss
+Warner Scheibe
+Summer of '18
+night phase???
+-=- CITATION -=-
+the following has several lines of code that are based off of paddle parkour 'play'
+state from Nathan's code. Specifically the tween implementation.
+*/
 
-	this.TEXT_X = 25;			// text w/in dialog box x-position
-	this.TEXT_Y = 330;			// text w/in dialog box y-position
-	this.TEXT_SIZE = 20;		// text font size (in pixels)
-	this.TEXT_MAX_WIDTH = 500;	// max width of text within box
+var night = function() {
 
-	this.NEXT_TEXT = '[SPACE]';	// text to display for next prompt
-	this.NEXT_X = 775;			// next text prompt x-position
-	this.NEXT_Y = 574;			// next text prompt y-position
-
-	this.LETTER_TIMER = 15;		// # ms each letter takes to "type" onscreen
-
-	// dialog variables
-	this.dialogConvo = 0;			// current "conversation"
-	this.dialogLine = 0;			// current line of conversation
-	this.dialogSpeaker = null;		// current speaker
-	this.dialogLastSpeaker = null;	// last speaker
-	this.dialogTyping = false;		// flag to lock player input while text is "typing"
-	this.dialogText = null;			// the actual dialog text
-	this.nextText = null;			// player prompt text to continue typing
-
-	// character variables
-	//this.cactusboi = null;
-
-
-	this.OFFSCREEN_X = -500;	// x,y values to place characters offscreen
-	this.OFFSCREEN_Y = 1000;	//
 };
 
 night.prototype = {
-	create: function() {
-		// parse dialog from JSON file
-		this.dialog = JSON.parse(this.game.cache.getText('dialogTwo'));
 
-		// add dialog box sprite
-		this.dialogbox = this.add.sprite(this.DBOX_X, this.DBOX_Y, 'dialogbox');
-		//this.dialogbox.visible = false;
+  preload: function() {
 
-		// init dialog text
-		this.dialogText = this.add.bitmapText(this.TEXT_X, this.TEXT_Y, this.DBOX_FONT, '', this.TEXT_SIZE);
-		this.nextText = this.add.bitmapText(this.NEXT_X, this.NEXT_Y, this.DBOX_FONT, '', this.TEXT_SIZE);
+  },//end function
 
-		// add character dialog images
-		this.cactusboi = this.add.sprite(this.OFFSCREEN_X, this.DBOX_Y+8, 'cactusboi');
-		this.cactusboi.anchor.setTo(0, 1);
-    	this.cactusboi.sendToBack();
+//create
+  create: function(){
+      cursor = this.input.keyboard.createCursorKeys();
 
-		// debug
-		console.log(this.dialog);
+//room assets
 
-		// start dialog
-		this.TypeText();
-	},
-	update: function() {
-		// check for spacebar press
-		if(this.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR) && !this.dialogTyping) {
-			// trigger dialog
-			this.TypeText();
-		}
-	},
-	TypeText: function() {
-		// lock input while typing
-		this.dialogTyping = true;
+	  room       = game.add.sprite(520,350, 'room');
+	  room.anchor.setTo            (0.5);
+      room.scale.setTo             (0.58);
+      desk        = game.add.sprite(380, 630, 'desk');
+      coathanger  = game.add.sprite(125, 380, 'coathanger');
+      cabinet     = game.add.sprite(650, 300, 'cabinet');
+      bed         = game.add.sprite(880, 530, 'bed');
+      plant       = game.add.sprite(480, 270, 'plant');
 
-		// clear text
-		this.dialogText.text = '';
-		this.nextText.text = '';
 
-		// make sure there are lines left to read in this convo, otherwise jump to next convo
-		if(this.dialogLine > this.dialog[this.dialogConvo].length-1) {
-			this.dialogLine = 0;
-			this.dialogConvo++;
-		}
+//the boiiiiiiiiiiiiiiiiiiiiiiiii  //frm, sX, sY, eX, eY
+      righthand = game.add.button  (660, 220,this.transform('righthand', 1500,660,220,315,210,1));
+      this.transform('cactusnoface',2000,600,150,240,150, 2);
+      this.transform('hat'         ,1500,120,220,228,90 , 3);
+      this.transform('jacket'      ,1500,120,300,250,260, 4);
+      this.transform('lefthand'    ,1500,660,220,200,345, 5);
 
-		// make sure we're not out of conversations
-		if(this.dialogConvo >= this.dialog.length) {
-			console.log('End of Conversations');
-			daynum++;
-      		game.state.start('day',true,true);
-		} else {
-			// set current speaker
-			this.dialogSpeaker = this.dialog[this.dialogConvo][this.dialogLine]['speaker'];
+//puuuper
 
-			// if(this.dialog[this.dialogConvo][this.dialogLine]['newSpeaker']) {
-			// 	if(this.dialogLastSpeaker) {
-   //        			dialogLastSpeaker.sendToBack();
-			// 		this.add.tween(this[this.dialogLastSpeaker]).to({x: this.OFFSCREEN_X}, 500, Phaser.Easing.Linear.None, true);
-			// 	}
-			// 	this.add.tween(this[this.dialogSpeaker]).to({x: this.DBOX_X+50, y: this.DBOX_Y + 420}, 500, Phaser.Easing.Linear.None, true);
-			// }
+      pupperfull  = game.add.sprite(300, 340, 'pupperfull');
 
-			// build dialog (concatenate speaker + line of text)
-			this.dialogLines = this.dialog[this.dialogConvo][this.dialogLine]['speaker'].toUpperCase() + ': ' + this.dialog[this.dialogConvo][this.dialogLine]['dialog'];
+//portrait lady
 
-			// setup timer to iterate through each letter in dialog
-			let currentChar = 0;
-			this.textTimer = this.time.events.repeat(this.LETTER_TIMER, this.dialogLines.length, function(){
-				this.dialogText.text += this.dialogLines[currentChar];
-				currentChar++;
-			}, this);
-			// callback function fires once timer is finished
-			this.textTimer.timer.onComplete.addOnce(function(){
-				// show prompt for more text
-				this.nextText = this.add.bitmapText(this.NEXT_X, this.NEXT_Y, this.DBOX_FONT, this.NEXT_TEXT, this.TEXT_SIZE);
-				this.nextText.anchor.setTo(1, 1);
-				// un-lock input
-				this.dialogTyping = false;
-			}, this);
+      portrait    = game.add.sprite(820, 135, 'portrait');
+      smallvase   = game.add.sprite(695, 205, 'smallvase');
+      bigVase     = game.add.sprite(800, 360, 'bigvase');
 
-			// set bounds on dialog
-			this.dialogText.maxWidth = this.TEXT_MAX_WIDTH;
 
-			// increment dialog line
-			this.dialogLine++;
+      righthand.anchor.setTo(0.5);
+      righthand.scale.setTo (0.5);
 
-			// set past speaker
-			this.dialogLastSpeaker = this.dialogSpeaker;
+      //                   scale, anchor
 
-		}
-	}
-};
+
+
+      desk.anchor.setTo           (0.5);
+      desk.scale.setTo            (0.4);
+      coathanger.scale.setTo      (0.5);
+      coathanger.anchor.setTo     (0.5);
+      cabinet.anchor.setTo        (0.5);
+      cabinet.scale.setTo         (0.5);
+      plant.anchor.setTo          (0.5);
+      plant.scale.setTo           (-0.2, 0.2);
+      // wallL.anchor.setTo          (0.5);
+      // wallL.scale.setTo     (0.4, 0.4);
+      // wallL.sendToBack();
+      // wallR.anchor.setTo          (0.5);
+      // wallR.scale.setTo     (-0.4, 0.4);
+      // wallR.sendToBack();
+      bed.anchor.setTo            (0.5);
+      bed.scale.setTo        (0.4, 0.4);
+      bed.angle                    = 15;
+      
+
+
+      pupperfull.anchor.setTo(0.5);
+      pupperfull.scale.setTo (0.4);
+
+      portrait.anchor.setTo(0.5);
+      portrait.scale.setTo(0.5);
+      smallvase.anchor.setTo(0.5);
+      smallvase.scale.setTo(0.5);
+      bigVase.anchor.setTo(0.5);
+      bigVase.scale.setTo(0.5);
+
+  },//end create
+
+//update
+  update: function(){
+
+  },//end update
+
+// sX,sY is start of the X,Y and eX, eY is the end
+  transform: function(spriteName,fps,sX,sY,eX,eY, flag){
+    // right now the way they are being made is that they are all becoming just butt for right now
+    // if you want me to give them more agency i can do that later i think, hopefully.
+
+
+      let butt = game.add.button(sX, sY, spriteName, function (){
+            butt.kill();
+            butt = game.add.sprite(sX, sY, spriteName);
+            butt.anchor.setTo(0.5);
+            butt.scale.setTo(0.4);
+
+           	game.add.tween(butt).to({angle: 360},fps, Phaser.Easing.Cubic.In, true);
+
+
+             game.add.tween(butt).to({angle: 360},fps, Phaser.Easing.Cubic.In, true);
+             game.time.events.add   (3530, function(){
+                butt.kill();
+                butt = game.add.sprite(eX, eY, spriteName);
+                butt.anchor.setTo(0.5);
+                butt.scale.setTo(0.4);
+              });
+
+       game.time.events.add(550, function() {
+             game.add.tween(butt).to({ x: eX, y: eY},4000, Phaser.Easing.Elastic.Out, true);
+             counter = 0;
+             //game.time.events.add(850, function() {butt.kill()});
+        });
+
+        ender++;
+        console.log('ender ' + ender);
+        //spawn actual boi-o
+        if(ender == 2){
+          game.add.tween(pupperfull).to({ x: game.world.centerX, y: game.world.centerY},fps, Phaser.Easing.Default, true);
+        }else if(ender == 5){
+
+            game.time.events.add(4000, function(){
+               butt.kill(),
+               //righthand.kill();   //will not woooorrrrrkkkkkk arrrghhhhhhhhhhhhh
+               cactusboi = game.add.sprite(255, 230, 'cactusboi');
+               cactusboi.anchor.setTo(0.5);
+               cactusboi.scale.setTo(0.6);
+
+           });
+        }//end if
+
+      });//end let
+
+        butt.scale.setTo(0.4);
+        butt.anchor.setTo(0.4);
+
+
+  },//end transform function
+
+}//end button prototype
