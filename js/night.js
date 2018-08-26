@@ -9,7 +9,6 @@ state from Nathan's code. Specifically the tween implementation.
 */
 
 var night = function() {
-
 };
 
 night.prototype = {
@@ -21,6 +20,9 @@ night.prototype = {
 //create
   create: function(){
       cursor = this.input.keyboard.createCursorKeys();
+      
+
+
 
 //room assets
 
@@ -92,37 +94,36 @@ night.prototype = {
   },//end create
 
 //update
-  update: function(){
+  	update: function(){
 
-  },//end update
+  	},//end update
 
-// sX,sY is start of the X,Y and eX, eY is the end
-  transform: function(spriteName,fps,sX,sY,eX,eY, flag){
+	// sX,sY is start of the X,Y and eX, eY is the end
+  	transform: function(spriteName,fps,sX,sY,eX,eY, flag){
     // right now the way they are being made is that they are all becoming just butt for right now
     // if you want me to give them more agency i can do that later i think, hopefully.
+    dSprites  = game.add.group();
+
+    	let butt = game.add.button(sX, sY, spriteName, function (){
+        	butt.kill();
+            let spriteTween = game.add.sprite(sX, sY, spriteName);
+            spriteTween.anchor.setTo(0.5);
+            spriteTween.scale.setTo(0.4);
+
+           	game.add.tween(spriteTween).to({angle: 360},fps, Phaser.Easing.Cubic.In, true);
 
 
-      let butt = game.add.button(sX, sY, spriteName, function (){
-            butt.kill();
-            butt = game.add.sprite(sX, sY, spriteName);
-            butt.anchor.setTo(0.5);
-            butt.scale.setTo(0.4);
-
-           	game.add.tween(butt).to({angle: 360},fps, Phaser.Easing.Cubic.In, true);
-
-
-             game.add.tween(butt).to({angle: 360},fps, Phaser.Easing.Cubic.In, true);
+             game.add.tween(spriteTween).to({angle: 360},fps, Phaser.Easing.Cubic.In, true);
              game.time.events.add   (3530, function(){
-                butt.kill();
-                butt = game.add.sprite(eX, eY, spriteName);
-                butt.anchor.setTo(0.5);
-                butt.scale.setTo(0.4);
+                spriteTween.kill();
+                dyingSprite = game.add.sprite(eX, eY, spriteName);
+                dSprites.add(dyingSprite);
+                dyingSprite.anchor.setTo(0.5);
+                dyingSprite.scale.setTo(0.4);
               });
 
-       game.time.events.add(550, function() {
-             game.add.tween(butt).to({ x: eX, y: eY},4000, Phaser.Easing.Elastic.Out, true);
-             counter = 0;
-             //game.time.events.add(850, function() {butt.kill()});
+       	game.time.events.add(550, function() {
+             game.add.tween(spriteTween).to({ x: eX, y: eY},4000, Phaser.Easing.Elastic.Out, true);
         });
 
         ender++;
@@ -133,11 +134,10 @@ night.prototype = {
         }else if(ender == 5){
 
             game.time.events.add(4000, function(){
-               butt.kill(),
-               //righthand.kill();   //will not woooorrrrrkkkkkk arrrghhhhhhhhhhhhh
-               cactusboi = game.add.sprite(255, 230, 'cactusboi');
-               cactusboi.anchor.setTo(0.5);
-               cactusboi.scale.setTo(0.6);
+            	dSprites.pendingDestroy = true;
+               	cactusboi = game.add.sprite(255, 230, 'cactusboi');
+               	cactusboi.anchor.setTo(0.5);
+               	cactusboi.scale.setTo(0.6);
 
            });
         }//end if
@@ -148,6 +148,6 @@ night.prototype = {
         butt.anchor.setTo(0.4);
 
 
-  },//end transform function
+  	},//end transform function
 
 }//end button prototype
