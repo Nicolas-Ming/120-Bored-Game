@@ -16,7 +16,8 @@ day.prototype =  {
         game.load.image('message2', 'assets/img/message2.png');
         //game.load.image('phoneFar', 'assets/img/phoneFar.png');
         game.load.spritesheet('dotdotdot', 'assets/img/dotdotdot.png', 82, 22, 5)
-        
+
+
         //game.world.setBounds(0, 0, 1620, 1080);
     },
     create: function() {
@@ -62,7 +63,6 @@ day.prototype =  {
         //this.interact = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
         this.phonemove();
 
-
     },
     update: function() {
         this.bgroundtiles.forEach(this.wrapSprite, this, true);
@@ -82,7 +82,9 @@ day.prototype =  {
             game.add.tween(message2).to({ x: 550, y: 276}, 100, Phaser.Easing.Default, true);
         }
         if(counter == 3){
+
             game.state.start('night');
+
         }
 
 
@@ -127,7 +129,7 @@ day.prototype =  {
         game.add.tween(phone).to({ x: 540, y: 300}, 900, Phaser.Easing.Default, true);
         game.add.tween(phone).to({angle: -360}, 900, Phaser.Easing.Cubic.In, true);
         game.add.tween(message1).to({ x: 520, y: 200}, 900, Phaser.Easing.Default, true);
-        
+
+
     }
 }
-
