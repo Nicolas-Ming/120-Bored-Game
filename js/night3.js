@@ -8,10 +8,10 @@ the following has several lines of code that are based off of paddle parkour 'pl
 state from Nathan's code. Specifically the tween implementation.
 */
 
-var night = function() {
+var night3 = function() {
 };
 
-night.prototype = {
+night3.prototype = {
 
   preload: function() {
 
@@ -43,14 +43,16 @@ night.prototype = {
 
 //puuuper
 
-      justdog  = game.add.sprite(300, 340, 'justdog');
+      justdog  = game.add.button(300, 340, this.transform('justdog' , 1500, 300, 340, 500, 350));
+      bodyscarf= game.add.button(125, 500, this.transform('bodyscarf', 1500, 125, 500, 500, 350));
+      headscarf= game.add.button(120, 260, this.transform('headscarf', 1500, 120, 260, 510, 280))
 
 //portrait lady
 
-      portrait    = game.add.button(820, 135, this.transform('portrait' , 1500, 820, 135, 600, 400));
-      smallvase   = game.add.button(695, 205, this.transform('smallvase', 1500, 695, 205, 625, 550));
-      bigVase     = game.add.button(800, 360, this.transform('bigvase'  , 1500, 800, 360, 575, 500));
-      scarf       = game.add.button(125, 500, this.transform('scarf'    , 1500, 125, 500, 575, 480));
+      portrait    = game.add.sprite(820, 135, 'portrait');
+      smallvase   = game.add.sprite(695, 205, 'smallvase');
+      bigVase     = game.add.sprite(800, 360, 'bigvase');
+      scarf       = game.add.sprite(125, 500, 'scarf');
 
       righthand.anchor.setTo(0.5);
       righthand.scale.setTo (0.5);
@@ -90,6 +92,8 @@ night.prototype = {
       smallvase.scale.setTo(0.5);
       bigVase.anchor.setTo(0.5);
       bigVase.scale.setTo(0.5);
+      scarf.anchor.setTo(0.5);
+      scarf.scale.setTo(0.4);
 
   },//end create
 
@@ -132,13 +136,13 @@ night.prototype = {
         if(ender == 1){
           console.log('ender' + ender);
           //game.add.tween(justdog).to({ x: game.world.centerX, y: game.world.centerY},fps, Phaser.Easing.Default, true);
-        }else if(ender == 4){
+        }else if(ender == 3){
 
             game.time.events.add(2000, function(){
             	dSprites.pendingDestroy = true;
-               	portraitladyfull = game.add.sprite(600, 400, 'portraitladyfull');
-               	portraitladyfull.anchor.setTo(0.5);
-               	portraitladyfull.scale.setTo(0.6);
+               	pupperfull = game.add.sprite(500, 350, 'pupperfull');
+               	pupperfull.anchor.setTo(0.5);
+               	pupperfull.scale.setTo(0.5);
 
            });
         }//end if
