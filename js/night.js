@@ -19,20 +19,20 @@ night.prototype = {
 
 //create
   create: function(){
-      cursor = this.input.keyboard.createCursorKeys();
-      
+	game.physics.startSystem(Phaser.Physics.ARCADE);
 
-
+	this.bgroundtiles = this.game.add.group();
+	this.bground();
 
 //room assets
 
 	  room       = game.add.sprite(520,350, 'room');
 	  room.anchor.setTo            (0.5);
       room.scale.setTo             (0.58);
-      desk        = game.add.sprite(380, 630, 'desk');
+      desk        = game.add.sprite(360, 650, 'desk');
       coathanger  = game.add.sprite(125, 380, 'coathanger');
       cabinet     = game.add.sprite(650, 300, 'cabinet');
-      bed         = game.add.sprite(880, 530, 'bed');
+      bed         = game.add.sprite(890, 530, 'bed');
       plant       = game.add.sprite(480, 270, 'plant');
 
 
@@ -95,8 +95,35 @@ night.prototype = {
 
 //update
   	update: function(){
-
+  		this.bgroundtiles.forEach(this.wrapSprite, this, true);
   	},//end update
+
+  	bground: function(){
+  		for(let j = 0; j < 3; j++){
+			for(let i = 0; i < 4; i++){
+				this.tile = game.add.sprite(0 + 511*i*.708,0 + 511*j*.708, 'bground');
+				this.game.physics.enable(this.tile,Phaser.Physics.ARCADE);
+				this.tile.anchor.set(0.5,0.5);
+				this.tile.scale.set(.708);
+				this.tile.body.velocity.x = -50;
+				this.tile.body.velocity.y = -50;
+				this.bgroundtiles.add(this.tile);
+			}
+		}
+  	},
+  	wrapSprite: function(sprite) {
+		// if sprite passes screen edge, wrap to opposite side
+		if(sprite.x + sprite.width/2 < 0) {
+			sprite.x = game.width + sprite.width/2;
+		} else if(sprite.x - sprite.width/2 > game.width) {
+			sprite.x = 0 - sprite.width/2;
+		}
+		if(sprite.y + sprite.height/2 < 0) {
+			sprite.y = game.height + sprite.height/2;
+		} else if(sprite.y - sprite.height/2 > game.height) {
+			sprite.y = 0 - sprite.height/2;
+		}
+	},
 
 	// sX,sY is start of the X,Y and eX, eY is the end
   	transform: function(spriteName,fps,sX,sY,eX,eY, flag){
