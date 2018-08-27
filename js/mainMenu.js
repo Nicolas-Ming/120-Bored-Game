@@ -16,6 +16,11 @@ mainMenu.prototype =  {
       	this.dialButA.scale.setTo       (0.6);
 		// this.dialButB = this.add.button(500, 500, 'dialButB', this.B_Dialog);
 
+		this.dialButA = this.add.button(600, 350, 'dialButA', this.A_Dialog);
+		this.dialButA.anchor.setTo            (0.5);
+      	this.dialButA.scale.setTo       (0.6);
+		// this.dialButB = this.add.button(500, 500, 'dialButB', this.B_Dialog);
+
 	},
 	update: function() {
 

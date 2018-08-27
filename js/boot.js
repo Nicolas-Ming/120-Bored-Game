@@ -10,6 +10,7 @@ boot.prototype =  {
       	game.load.image('hat',            'assets/img/cactusboi/hat.png');
       	game.load.image('cactusnoface',   'assets/img/cactusboi/cactusnoface.png');
 
+
       	game.load.image('title',     'assets/img/mainmenu/titleone.png');
 
       	game.load.image('button',     'assets/img/buttons/button.png');

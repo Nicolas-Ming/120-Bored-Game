@@ -8,10 +8,10 @@ the following has several lines of code that are based off of paddle parkour 'pl
 state from Nathan's code. Specifically the tween implementation.
 */
 
-var night = function() {
+var night3 = function() {
 };
 
-night.prototype = {
+night3.prototype = {
 
   preload: function() {
 
@@ -26,7 +26,6 @@ night.prototype = {
 
 //room assets
 
-
 	    room       = game.add.sprite(520,350, 'room');
       desk        = game.add.sprite(380, 630, 'desk');
       coathanger  = game.add.sprite(125, 380, 'coathanger');
@@ -36,7 +35,6 @@ night.prototype = {
 
 
 //the boiiiiiiiiiiiiiiiiiiiiiiiii  //frm, sX, sY, eX, eY
-
       righthand = game.add.sprite(660, 220,'righthand');
       cactusnoface = game.add.sprite(615,170,'cactusnoface');
       hat = game.add.sprite(120,220,'hat');
@@ -45,21 +43,21 @@ night.prototype = {
 
 //puuuper
 
-      justdog  = game.add.sprite(300, 340, 'justdog');
+      justdog  = game.add.button(300, 340, this.transform('justdog' , 1500, 300, 340, 500, 350));
+      bodyscarf= game.add.button(125, 500, this.transform('bodyscarf', 1500, 125, 500, 500, 350));
+      headscarf= game.add.button(120, 260, this.transform('headscarf', 1500, 120, 260, 510, 280))
 
 //portrait lady
 
-      portrait    = game.add.button(820, 135, this.transform('portrait' , 1500, 820, 135, 600, 400));
-      smallvase   = game.add.button(695, 205, this.transform('smallvase', 1500, 695, 205, 625, 550));
-      bigVase     = game.add.button(800, 360, this.transform('bigvase'  , 1500, 800, 360, 575, 500));
-      scarf       = game.add.button(125, 500, this.transform('scarf'    , 1500, 125, 500, 575, 480));
-
+      portrait    = game.add.sprite(820, 135, 'portrait');
+      smallvase   = game.add.sprite(695, 205, 'smallvase');
+      bigVase     = game.add.sprite(800, 360, 'bigvase');
+      scarf       = game.add.sprite(125, 500, 'scarf');
 
       righthand.anchor.setTo(0.5);
       righthand.scale.setTo (0.5);
 
       //                   scale, anchor
-
       desk.anchor.setTo           (0.5);
       desk.scale.setTo            (0.4);
       coathanger.scale.setTo      (0.5);
@@ -68,7 +66,6 @@ night.prototype = {
       cabinet.scale.setTo         (0.5);
       plant.anchor.setTo          (0.5);
       plant.scale.setTo           (-0.2, 0.2);
-
       bed.anchor.setTo            (0.5);
       bed.scale.setTo        (0.4, 0.4);
       room.anchor.setTo            (0.5);
@@ -89,13 +86,14 @@ night.prototype = {
       justdog.anchor.setTo(0.5);
       justdog.scale.setTo (0.4);
 
-
       portrait.anchor.setTo(0.5);
       portrait.scale.setTo(0.5);
       smallvase.anchor.setTo(0.5);
       smallvase.scale.setTo(0.5);
       bigVase.anchor.setTo(0.5);
       bigVase.scale.setTo(0.5);
+      scarf.anchor.setTo(0.5);
+      scarf.scale.setTo(0.4);
 
   },//end create
 
@@ -105,9 +103,7 @@ night.prototype = {
   	},//end update
 
 	// sX,sY is start of the X,Y and eX, eY is the end
-
   	transform: function(spriteName,fps,sX,sY,eX,eY){
-
     // right now the way they are being made is that they are all becoming just butt for right now
     // if you want me to give them more agency i can do that later i think, hopefully.
     dSprites  = game.add.group();
@@ -122,9 +118,7 @@ night.prototype = {
 
 
              game.add.tween(spriteTween).to({angle: 360},fps, Phaser.Easing.Cubic.In, true);
-
              game.time.events.add   (2530, function(){
-
                 spriteTween.kill();
                 dyingSprite = game.add.sprite(eX, eY, spriteName);
                 dSprites.add(dyingSprite);
@@ -132,27 +126,23 @@ night.prototype = {
                 dyingSprite.scale.setTo(0.4);
               });
 
-
        	game.time.events.add(1550, function() {
              game.add.tween(spriteTween).to({ x: eX, y: eY},800, Phaser.Easing.Elastic.Out, true);
-
         });
 
         ender++;
         console.log('ender ' + ender);
-
         //spawn actual lady
         if(ender == 1){
           console.log('ender' + ender);
           //game.add.tween(justdog).to({ x: game.world.centerX, y: game.world.centerY},fps, Phaser.Easing.Default, true);
-        }else if(ender == 4){
+        }else if(ender == 3){
 
             game.time.events.add(2000, function(){
             	dSprites.pendingDestroy = true;
-               	portraitladyfull = game.add.sprite(600, 400, 'portraitladyfull');
-               	portraitladyfull.anchor.setTo(0.5);
-               	portraitladyfull.scale.setTo(0.6);
-
+               	pupperfull = game.add.sprite(500, 350, 'pupperfull');
+               	pupperfull.anchor.setTo(0.5);
+               	pupperfull.scale.setTo(0.5);
 
            });
         }//end if
