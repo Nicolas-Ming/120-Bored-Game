@@ -180,7 +180,7 @@ night.prototype = {
                	portraitladyfull = game.add.sprite(600, 400, 'portraitladyfull');
                	portraitladyfull.anchor.setTo(0.5);
                	portraitladyfull.scale.setTo(0.6);
-
+               	game.state.start('dialogSystem');
 
            });
         }//end if
@@ -188,7 +188,7 @@ night.prototype = {
       });//end let
 
         butt.scale.setTo(0.4);
-        butt.anchor.setTo(0.4);
+        butt.anchor.setTo(0.5);
 
 
   	},//end transform function

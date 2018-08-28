@@ -12,20 +12,14 @@ mainMenu.prototype =  {
 		this.bgroundtiles = this.game.add.group();
 
 		this.bground();
-		title = game.add.sprite(600, 135, 'title');
+		title = game.add.sprite(540, 250, 'title');
 		title.anchor.setTo                   (0.5);
-		title.scale.setTo                    (0.2);
+		title.scale.setTo                    (1.8);
 
-		this.dialButA = this.add.button(600, 350, 'dialButA', this.A_Dialog);
-		this.dialButA.anchor.setTo            (0.5);
-      	this.dialButA.scale.setTo       (0.6);
-		// this.dialButB = this.add.button(500, 500, 'dialButB', this.B_Dialog);
-
-		this.dialButA = this.add.button(600, 350, 'dialButA', this.A_Dialog);
-		this.dialButA.anchor.setTo            (0.5);
-      	this.dialButA.scale.setTo       (0.6);
-		// this.dialButB = this.add.button(500, 500, 'dialButB', this.B_Dialog);
-
+		this.sButton = this.add.button(540, 550, 'startButton', this.moveScene);
+		this.sButton.anchor.setTo      (0.5);
+      	this.sButton.animations.add('shake',[0,1,2],10,true);
+      	this.sButton.animations.play('shake');
 	},
 	update: function() {
 		this.bgroundtiles.forEach(this.wrapSprite, this, true);
@@ -56,7 +50,7 @@ mainMenu.prototype =  {
 			sprite.y = 0 - sprite.height/2;
 		}
 	},
-	A_Dialog: function(){
+	moveScene: function(){
 		console.log('STARTGAME');
 		//dialButB.kill();
 		game.state.start('day');

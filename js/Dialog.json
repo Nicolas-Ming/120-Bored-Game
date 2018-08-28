@@ -2,33 +2,37 @@
 	[
 		{
 			"speaker" : "cactusboi",
-			"dialog" : "AHHHHHHHHHHH",
+			"dialog" : "Tell me, O muse, of that ingenious hero who travelled far and wide after he had sacked the famous town of Troy.",
 			"newSpeaker" : "true"
 		},
 		{
 			"speaker" : "cactusboi",
-			"dialog" : "Nah just kidding, I'm a cactus this is just how it is, life is pain, but that goes for me, what about you why do you look like you are in pain."
+			"dialog" : "Many cities did he visit, and many were the nations with whose manners and customs he was acquainted."
 		},
 		{	
-			"speaker" : "",
-			"dialog" : "As you take a step back in utter shock, you regain yourself and decide to tell it your situation"
-		},
-		{
 			"speaker" : "cactusboi",
-			"dialog" : "I have so many friends, I can help."
-		},
-		{
-			"speaker" : "",
-			"dialog" : "You think to yourself that he totally doesn’t have many friends, other than yourself and that whole ass dog."
-		},
-		{
-			"speaker" : "cactusboi",
-			"dialog" : "What do you say, you want me to help out."
-		},		
-		{
-			"speaker" : "",
-			"dialog" : "As you try to recall what you need to tell it so you can get help your mind begins fog and before you know it you are passed out on the ground."
+			"dialog" : "Tell me, too, about all these things, O daughter of dog, from whatsoever source you may know them."
 		}
-	]	
-	
+	],
+	[
+		{	
+			"speaker" : "portraitlady",
+			"dialog" : "Father, son of Saturn, King of kings, it served Aegisthus right, and so it would any one else who does as he did; but Aegisthus is neither here nor there.",
+			"newSpeaker" : "true"
+		},
+		{	
+			"speaker" : "portraitlady",
+			"dialog" : "It is for Ulysses that my heart bleeds, when I think of his sufferings in that lonely sea-girt island, far away, poor man, from all his friends."
+		},
+		{	
+			"speaker" : "dog",
+			"dialog" : "My child, what are you talking about? How can I forget Ulysses than whom there is no more capable man on earth, nor more liberal in his offerings to the immortal gods that live in heaven?",
+			"newSpeaker" : "true"
+		},
+		{	
+			"speaker" : "portraitlady",
+			"dialog" : "If, then, the gods now mean that Ulysses should get home, we should first send Mercury to the Ogygian island to tell Calypso that we have made up our minds and that he is to return.",
+			"newSpeaker" : "true"
+		}
+	]
 ]

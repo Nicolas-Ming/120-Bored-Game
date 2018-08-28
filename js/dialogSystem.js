@@ -1,22 +1,24 @@
-// dialogSystem state
+// editted dialog system by nathan
+var currentDBOX = 'dialogboxCB';	//for later use in switching the dialogbox
+var currentJSON = 'dialog';
+//var currentSpeaker;	//don't actually need because the parser will decide for u, just need a decider for which JSON to play and which DBOX to use
 
 dialogSystem = function(game){
 	// dialog constants
-
 	this.DBOX_X = 0;			// dialog box x-position
-	this.DBOX_Y = 280;			// dialog box y-position
+	this.DBOX_Y = 350;			// dialog box y-position
 	this.DBOX_FONT = 'font';	// dialog box font key
 
-	this.TEXT_X = 25;			// text w/in dialog box x-position
-	this.TEXT_Y = 330;			// text w/in dialog box y-position
-	this.TEXT_SIZE = 20;		// text font size (in pixels)
-	this.TEXT_MAX_WIDTH = 500;	// max width of text within box
+	this.TEXT_X = 50;			// text w/in dialog box x-position
+	this.TEXT_Y = 420;			// text w/in dialog box y-position
+	this.TEXT_SIZE = 24;		// text font size (in pixels)
+	this.TEXT_MAX_WIDTH = 715;	// max width of text within box
 
-	this.NEXT_TEXT = '[SPACE]';	// text to display for next prompt
-	this.NEXT_X = 775;			// next text prompt x-position
-	this.NEXT_Y = 574;			// next text prompt y-position
+	this.NEXT_TEXT = '[CLICK]';	// text to display for next prompt
+	this.NEXT_X = 750;			// next text prompt x-position
+	this.NEXT_Y = 550;			// next text prompt y-position
 
-	this.LETTER_TIMER = 15;		// # ms each letter takes to "type" onscreen
+	this.LETTER_TIMER = 10;		// # ms each letter takes to "type" onscreen
 
 	// dialog variables
 	this.dialogConvo = 0;			// current "conversation"
@@ -29,7 +31,8 @@ dialogSystem = function(game){
 
 	// character variables
 	this.cactusboi = null;
-
+	this.portraitlady = null;
+	this.dog = null;
 
 	this.OFFSCREEN_X = -500;	// x,y values to place characters offscreen
 	this.OFFSCREEN_Y = 1000;	//
@@ -37,16 +40,19 @@ dialogSystem = function(game){
 
 dialogSystem.prototype = {
 	create: function() {
-
-		this.stage.backgroundColor = 0xf6997a;
-		this.dialButA = this.add.button(-1000, 200, 'dialButA', this.A_Dialog);
-		this.dialButB = this.add.button(-1000, 200, 'dialButB', this.B_Dialog);
+		//background intialization
+		this.physics.startSystem(Phaser.Physics.ARCADE);
+        this.bgroundtiles = this.add.group();
+        this.bground();
 
 		// parse dialog from JSON file
-		this.dialog = JSON.parse(this.game.cache.getText('dialog'));
-
+		this.dialog = JSON.parse(this.game.cache.getText(currentJSON));
+		
 		// add dialog box sprite
-		this.dialogbox = this.add.sprite(this.DBOX_X, this.DBOX_Y, 'dialogbox');
+		//**************currently playing with this to have different boxes and animations**************//
+		this.dialogbox = this.add.sprite(this.DBOX_X, this.DBOX_Y, currentDBOX);
+		this.dialogbox.animations.add('wiggly', [0, 1], 10, true);	//puts the wiggle in the dbox
+		this.dialogbox.animations.play('wiggly');
 		//this.dialogbox.visible = false;
 
 		// init dialog text
@@ -56,7 +62,18 @@ dialogSystem.prototype = {
 		// add character dialog images
 		this.cactusboi = this.add.sprite(this.OFFSCREEN_X, this.DBOX_Y+8, 'cactusboi');
 		this.cactusboi.anchor.setTo(0, 1);
-    this.cactusboi.sendToBack();
+		this.portraitlady = this.add.sprite(this.OFFSCREEN_X, this.DBOX_Y+8, 'portraitlady');
+		this.portraitlady.anchor.setTo(0, 1);
+		this.dog = this.add.sprite(this.OFFSCREEN_X, this.DBOX_Y+8, 'dog');
+		this.dog.anchor.setTo(0, 1);
+
+		//group for layer control
+		this.layers = this.add.group();
+		this.layers.add(this.cactusboi);
+		this.layers.add(this.portraitlady);
+		this.layers.add(this.dog);
+		this.layers.add(this.dialogbox);
+		this.layers.add(this.dialogText);
 
 		// debug
 		console.log(this.dialog);
@@ -65,11 +82,17 @@ dialogSystem.prototype = {
 		this.TypeText();
 	},
 	update: function() {
+		//background img
+		this.bgroundtiles.forEach(this.wrapSprite, this, true);
+
+/******** CHANGE THIS TO A MOUSE CLICK ********/
 		// check for spacebar press
 		if(this.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR) && !this.dialogTyping) {
 			// trigger dialog
 			this.TypeText();
 		}
+/**********************************************/
+
 	},
 	TypeText: function() {
 		// lock input while typing
@@ -87,12 +110,6 @@ dialogSystem.prototype = {
 
 		// make sure we're not out of conversations
 		if(this.dialogConvo >= this.dialog.length) {
-			this.dialogbox.kill();
-			this.add.tween(this.dialButA).to({ x: 100, y: 200}, 500, Phaser.Easing.Bounce.out, true);
-			this.add.tween(this.dialButA.scale).to({ x: 0.5, y: 0.5}, 500, Phaser.Easing.Default, true);
-			this.add.tween(this.dialButB).to({ x: 100, y: 400}, 500, Phaser.Easing.Bounce.out, true);
-			this.add.tween(this.dialButB.scale).to({ x: 0.5, y: 0.5}, 500, Phaser.Easing.Default, true);
-
 			console.log('End of Conversations');
 		} else {
 			// set current speaker
@@ -100,10 +117,10 @@ dialogSystem.prototype = {
 
 			if(this.dialog[this.dialogConvo][this.dialogLine]['newSpeaker']) {
 				if(this.dialogLastSpeaker) {
-          dialogLastSpeaker.sendToBack();
 					this.add.tween(this[this.dialogLastSpeaker]).to({x: this.OFFSCREEN_X}, 500, Phaser.Easing.Linear.None, true);
 				}
-				this.add.tween(this[this.dialogSpeaker]).to({x: this.DBOX_X+50, y: this.DBOX_Y + 420}, 500, Phaser.Easing.Linear.None, true);
+				this.add.tween(this[this.dialogSpeaker]).to({x: this.DBOX_X+250, y: this.DBOX_Y+230}, 500, Phaser.Easing.Linear.None, true);
+
 			}
 
 			// build dialog (concatenate speaker + line of text)
@@ -123,7 +140,7 @@ dialogSystem.prototype = {
 				// un-lock input
 				this.dialogTyping = false;
 			}, this);
-
+			
 			// set bounds on dialog
 			this.dialogText.maxWidth = this.TEXT_MAX_WIDTH;
 
@@ -132,19 +149,33 @@ dialogSystem.prototype = {
 
 			// set past speaker
 			this.dialogLastSpeaker = this.dialogSpeaker;
-
 		}
 	},
-	A_Dialog: function(){
-		console.log('A_Dialog');
-		//dialButB.kill();
-		game.state.start('night');
-
-	},
-	B_Dialog: function(){
-		console.log('B_Dialog');
-		//this.dialButA.kill();
-		game.state.start('night');
-
-	}
+	//BACKGROUND STUFF
+	bground: function(){
+        for(let j = 0; j < 3; j++){
+            for(let i = 0; i < 4; i++){
+                this.tile = this.add.sprite(0 + 511*i*.708,0 + 511*j*.708, 'bground');
+                this.physics.enable(this.tile,Phaser.Physics.ARCADE);
+                this.tile.anchor.set(0.5,0.5);
+                this.tile.scale.set(.708);
+                this.tile.body.velocity.x = -50;
+                this.tile.body.velocity.y = -50;
+                this.bgroundtiles.add(this.tile);
+            }
+        }
+    },
+    wrapSprite: function(sprite) {
+        // if sprite passes screen edge, wrap to opposite side
+        if(sprite.x + sprite.width/2 < 0) {
+            sprite.x = 1080 + sprite.width/2;
+        } else if(sprite.x - sprite.width/2 > 1080) {
+            sprite.x = 0 - sprite.width/2;
+        }
+        if(sprite.y + sprite.height/2 < 0) {
+            sprite.y = 720 + sprite.height/2;
+        } else if(sprite.y - sprite.height/2 > 720) {
+            sprite.y = 0 - sprite.height/2;
+        }
+    },//END BACKGROUND STUFF
 };
