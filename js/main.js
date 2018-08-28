@@ -4,6 +4,9 @@ var game = new Phaser.Game(1080,720);
 //global variables
 var ender = 0;
 var counter = 0;
+var numDay = 0;
+var currentDBOX = 'dialogboxPL';	//for later use in switching the dialogbox
+var currentJSON = 'dialogPL';
 var cactusEndX = 260;
 var cactusEndY = 140;
 var startCactusNoFaceX = 860;

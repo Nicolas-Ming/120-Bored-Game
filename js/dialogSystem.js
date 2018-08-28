@@ -1,6 +1,5 @@
 // editted dialog system by nathan
-var currentDBOX = 'dialogboxCB';	//for later use in switching the dialogbox
-var currentJSON = 'dialog';
+
 //var currentSpeaker;	//don't actually need because the parser will decide for u, just need a decider for which JSON to play and which DBOX to use
 
 dialogSystem = function(game){

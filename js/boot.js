@@ -38,12 +38,14 @@ boot.prototype =  {
   		game.load.image('justdog',      'assets/img/pupper/justdog.png');
   		game.load.image('bodyscarf',    'assets/img/pupper/bodyscarf.png');
   		game.load.image('headscarf',    'assets/img/pupper/headscarf.png');
+		this.load.spritesheet('dialogboxDG', 'assets/img/pupper/dialogboxDG.png', 800, 250, 2);
 
   		game.load.image('bigvase',          'assets/img/portrait/bigvase.png');
       	game.load.image('portrait',         'assets/img/portrait/portrait.png');
       	game.load.image('portraitlady', 'assets/img/portrait/portraitladyfull.png');
      	game.load.image('scarf',            'assets/img/portrait/scarf.png');
     	game.load.image('smallvase',        'assets/img/portrait/smallvase.png');
+    	this.load.spritesheet('dialogboxPL', 'assets/img/portrait/dialogboxPL.png', 800, 250, 2);
 
 		game.load.image('rug', 'assets/img/rugwarped.png');
 		game.load.image('cactusnoface', 'assets/img/cactusboi/cactusnoface.png');
@@ -69,7 +71,9 @@ boot.prototype =  {
 
 		game.load.image('dialogbox', 'assets/img/dialogbox.png');
 
-		game.load.text('dialog', 'js/Dialog.json');
+		game.load.text('dialogPL', 'js/DialogPL.json');
+		game.load.text('dialogCB', 'js/DialogCB.json');
+		game.load.text('dialogDG', 'js/DialogDG.json');
 
 		game.load.bitmapFont('font', 'assets/img/gem.png', 'assets/img/gem.xml');
 		
