@@ -21,9 +21,6 @@ night3.prototype = {
   create: function(){
       cursor = this.input.keyboard.createCursorKeys();
 
-
-
-
 //room assets
 
 	    room       = game.add.sprite(520,350, 'room');
@@ -32,7 +29,6 @@ night3.prototype = {
       cabinet     = game.add.sprite(650, 300, 'cabinet');
       bed         = game.add.sprite(880, 530, 'bed');
       plant       = game.add.sprite(480, 270, 'plant');
-
 
 //the boiiiiiiiiiiiiiiiiiiiiiiiii  //frm, sX, sY, eX, eY
       righthand = game.add.sprite(660, 220,'righthand');
@@ -143,6 +139,9 @@ night3.prototype = {
                	pupperfull = game.add.sprite(500, 350, 'pupperfull');
                	pupperfull.anchor.setTo(0.5);
                	pupperfull.scale.setTo(0.5);
+                /*game.time.events.add(500, function(){
+               	    game.state.start('dialogSystem');
+                });/*
 
            });
         }//end if
