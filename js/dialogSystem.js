@@ -4,18 +4,18 @@
 
 dialogSystem = function(game){
 	// dialog constants
-	this.DBOX_X = 0;			// dialog box x-position
-	this.DBOX_Y = 350;			// dialog box y-position
+	this.DBOX_X = 0+140;			// dialog box x-position
+	this.DBOX_Y = 350+50;			// dialog box y-position
 	this.DBOX_FONT = 'font';	// dialog box font key
 
-	this.TEXT_X = 50;			// text w/in dialog box x-position
-	this.TEXT_Y = 420;			// text w/in dialog box y-position
-	this.TEXT_SIZE = 24;		// text font size (in pixels)
+	this.TEXT_X = 50+140;			// text w/in dialog box x-position
+	this.TEXT_Y = 420+50;			// text w/in dialog box y-position
+	this.TEXT_SIZE = 32;		// text font size (in pixels)
 	this.TEXT_MAX_WIDTH = 715;	// max width of text within box
 
 	this.NEXT_TEXT = '[CLICK]';	// text to display for next prompt
-	this.NEXT_X = 750;			// next text prompt x-position
-	this.NEXT_Y = 550;			// next text prompt y-position
+	this.NEXT_X = 750+140;			// next text prompt x-position
+	this.NEXT_Y = 550+50;			// next text prompt y-position
 
 	this.LETTER_TIMER = 10;		// # ms each letter takes to "type" onscreen
 
@@ -60,7 +60,7 @@ dialogSystem.prototype = {
 
 		// add character dialog images
 		this.cactusboi = this.add.sprite(this.OFFSCREEN_X, this.DBOX_Y+8, 'cactusboi');
-		this.cactusboi.anchor.setTo(0, 1);
+		this.cactusboi.anchor.setTo(0, 0.8);
 		this.portraitlady = this.add.sprite(this.OFFSCREEN_X, this.DBOX_Y+8, 'portraitlady');
 		this.portraitlady.anchor.setTo(0, 1);
 		this.dog = this.add.sprite(this.OFFSCREEN_X, this.DBOX_Y+8, 'dog');
@@ -110,6 +110,9 @@ dialogSystem.prototype = {
 		// make sure we're not out of conversations
 		if(this.dialogConvo >= this.dialog.length) {
 			console.log('End of Conversations');
+			numDay++;
+			game.state.start('day');
+
 		} else {
 			// set current speaker
 			this.dialogSpeaker = this.dialog[this.dialogConvo][this.dialogLine]['speaker'];
@@ -118,7 +121,7 @@ dialogSystem.prototype = {
 				if(this.dialogLastSpeaker) {
 					this.add.tween(this[this.dialogLastSpeaker]).to({x: this.OFFSCREEN_X}, 500, Phaser.Easing.Linear.None, true);
 				}
-				this.add.tween(this[this.dialogSpeaker]).to({x: this.DBOX_X+250, y: this.DBOX_Y+230}, 500, Phaser.Easing.Linear.None, true);
+				this.add.tween(this[this.dialogSpeaker]).to({x: this.DBOX_X+250, y: this.DBOX_Y+180}, 500, Phaser.Easing.Linear.None, true);
 
 			}
 

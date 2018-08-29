@@ -29,8 +29,7 @@ night.prototype = {
 
 
 	  room       = game.add.sprite(520,350, 'room');
-      desk        = game.add.sprite(380, 630, 'desk');
-      coathanger  = game.add.sprite(125, 380, 'coathanger');
+      desk        = game.add.sprite(380, 630, 'desk');  
       cabinet     = game.add.sprite(650, 300, 'cabinet');
       bed         = game.add.sprite(890, 530, 'bed');
       plant       = game.add.sprite(480, 270, 'plant');
@@ -40,8 +39,8 @@ night.prototype = {
 
       righthand = game.add.sprite(660, 220,'righthand');
       cactusnoface = game.add.sprite(615,170,'cactusnoface');
-      hat = game.add.sprite(120,220,'hat');
       jacket = game.add.sprite(140, 300, 'jacket');
+      hat = game.add.sprite(120,220,'hat');
       lefthand = game.add.sprite(660, 220, 'lefthand');
 
 //puuuper
@@ -54,6 +53,8 @@ night.prototype = {
       smallvase   = game.add.button(695, 205, this.transform('smallvase', 1500, 695, 205, 625, 550));
       bigVase     = game.add.button(800, 360, this.transform('bigvase'  , 1500, 800, 360, 575, 500));
       scarf       = game.add.button(125, 500, this.transform('scarf'    , 1500, 125, 500, 575, 480));
+
+      coathanger  = game.add.sprite(125, 380, 'coathanger');
 
 
       righthand.anchor.setTo(0.5);
@@ -180,6 +181,8 @@ night.prototype = {
                	portraitladyfull = game.add.sprite(600, 400, 'portraitladyfull');
                	portraitladyfull.anchor.setTo(0.5);
                	portraitladyfull.scale.setTo(0.6);
+               	currentDBOX = 'dialogboxPL';
+				currentJSON = 'dialogPL';
                	game.state.start('dialogSystem');
 
            });

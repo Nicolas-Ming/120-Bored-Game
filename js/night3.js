@@ -143,6 +143,9 @@ night3.prototype = {
                	pupperfull = game.add.sprite(500, 350, 'pupperfull');
                	pupperfull.anchor.setTo(0.5);
                	pupperfull.scale.setTo(0.5);
+                currentDBOX = 'dialogboxDG';
+                currentJSON = 'dialogDG';
+                game.state.start('dialogSystem');
 
            });
         }//end if

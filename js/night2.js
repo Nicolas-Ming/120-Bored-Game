@@ -138,6 +138,9 @@ night2.prototype = {
                	cactusboi = game.add.sprite(255, 230, 'cactusboi');
                	cactusboi.anchor.setTo(0.5);
                	cactusboi.scale.setTo(0.6);
+                currentDBOX = 'dialogboxCB';
+                currentJSON = 'dialogCB';
+                game.state.start('dialogSystem');
 
            });
         }//end if

@@ -11,7 +11,6 @@ boot.prototype =  {
       	game.load.image('cactusnoface',   'assets/img/cactusboi/cactusnoface.png');
       	game.load.spritesheet('dialogboxCB', 'assets/img/cactusboi/dialogboxCB.png', 800, 250, 2);
 
-
       	game.load.image('title',     'assets/img/mainmenu/titleone.png');
       	game.load.spritesheet('startButton', 'assets/img/buttons/startButton.png',300,104,3)
 

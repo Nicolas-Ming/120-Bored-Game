@@ -22,6 +22,6 @@ game.state.add('mainMenu',mainMenu);
 game.state.add('day',day);
 game.state.add('dialogSystem', dialogSystem);
 game.state.add('night',night);
-// game.state.add('night2',night2);
-// game.state.add('night3',night3);
+game.state.add('night2',night2);
+game.state.add('night3',night3);
 game.state.start('boot');

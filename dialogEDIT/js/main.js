@@ -2,7 +2,7 @@
 
 window.onload = function() {
 	// Create Phaser game instance
-	var game = new Phaser.Game(800, 600, Phaser.AUTO, 'gameWindow');
+	var game = new Phaser.Game(1080, 720, Phaser.AUTO, 'gameWindow');
 
 	// Add states
 	game.state.add('Title', MyGame.Title);

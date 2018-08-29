@@ -82,9 +82,9 @@ day.prototype =  {
             game.add.tween(message2).to({ x: 550, y: 276}, 100, Phaser.Easing.Default, true);
         }
         if(counter == 3){
-
-            game.state.start('night');
-
+            if(numDay == 0) game.state.start('night');
+            else if(numDay == 1) game.state.start('night2');
+            else if(numDay == 2) game.state.start('night3');
         }
 
 
