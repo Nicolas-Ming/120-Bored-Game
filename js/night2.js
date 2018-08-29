@@ -21,9 +21,6 @@ night2.prototype = {
   create: function(){
       cursor = this.input.keyboard.createCursorKeys();
 
-
-
-
 //room assets
 
 	  room       = game.add.sprite(520,350, 'room');
@@ -69,17 +66,9 @@ night2.prototype = {
       cabinet.scale.setTo         (0.5);
       plant.anchor.setTo          (0.5);
       plant.scale.setTo           (-0.2, 0.2);
-      // wallL.anchor.setTo          (0.5);
-      // wallL.scale.setTo     (0.4, 0.4);
-      // wallL.sendToBack();
-      // wallR.anchor.setTo          (0.5);
-      // wallR.scale.setTo     (-0.4, 0.4);
-      // wallR.sendToBack();
       bed.anchor.setTo            (0.5);
-      bed.scale.setTo        (0.4, 0.4);
-      bed.angle                    = 15;
-
-
+      bed.scale.setTo             (0.4, 0.4);
+      bed.angle                   = 15;
 
       pupperfull.anchor.setTo(0.5);
       pupperfull.scale.setTo (0.4);
@@ -112,9 +101,9 @@ night2.prototype = {
 
            	game.add.tween(spriteTween).to({angle: 360},fps, Phaser.Easing.Cubic.In, true);
 
-
              game.add.tween(spriteTween).to({angle: 360},fps, Phaser.Easing.Cubic.In, true);
-             game.time.events.add   (3530, function(){
+
+             game.time.events.add(2530, function(){
                 spriteTween.kill();
                 dyingSprite = game.add.sprite(eX, eY, spriteName);
                 dSprites.add(dyingSprite);
@@ -122,8 +111,8 @@ night2.prototype = {
                 dyingSprite.scale.setTo(0.4);
               });
 
-       	game.time.events.add(550, function() {
-             game.add.tween(spriteTween).to({ x: eX, y: eY},4000, Phaser.Easing.Elastic.Out, true);
+       	game.time.events.add(1550, function() {
+             game.add.tween(spriteTween).to({ x: eX, y: eY},800, Phaser.Easing.Elastic.Out, true);
         });
 
         ender++;
@@ -133,11 +122,14 @@ night2.prototype = {
           game.add.tween(pupperfull).to({ x: game.world.centerX, y: game.world.centerY},fps, Phaser.Easing.Default, true);
         }else if(ender == 5){
 
-            game.time.events.add(4000, function(){
+            game.time.events.add(2000, function(){
             	dSprites.pendingDestroy = true;
                	cactusboi = game.add.sprite(255, 230, 'cactusboi');
                	cactusboi.anchor.setTo(0.5);
                	cactusboi.scale.setTo(0.6);
+                /*game.time.events.add(500, function(){
+               	    game.state.start('dialogSystem');
+                });/*
 
            });
         }//end if
