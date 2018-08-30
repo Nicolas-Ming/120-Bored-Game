@@ -2,16 +2,32 @@
 	[
 		{
 			"speaker" : "cactusboi",
-			"dialog" : "Tell me, O muse, of that ingenious hero who travelled far and wide after he had sacked the famous town of Troy.",
+			"dialog" : "Oh hey my dude!",
 			"newSpeaker" : "true"
 		},
 		{
 			"speaker" : "cactusboi",
-			"dialog" : "Many cities did he visit, and many were the nations with whose manners and customs he was acquainted."
+			"dialog" : "Looks like you've been stressin' about some things!"
 		},
 		{	
 			"speaker" : "cactusboi",
-			"dialog" : "Tell me, too, about all these things, O daughter of dog, from whatsoever source you may know them."
+			"dialog" : "I know you said some stuff to your friend that came across wrong; it's alright, it happens."
+		},
+		{
+			"speaker" : "cactusboi",
+			"dialog" : "You can’t blame yourself for how they understood your words, that’s on their end."
+		},
+		{
+			"speaker" : "cactusboi",
+			"dialog" : "Now, we gotta rid you of all this negative energy. I say, just say ''sorry.''"
+		},
+		{
+			"speaker" : "cactusboi",
+			"dialog" : "The sooner you get it over with the better you will both feel. No use in talking about it even more."
+		},
+		{
+			"speaker" : "cactusboi",
+			"dialog" : "They made their point, you made yours. For the sake of your friendship just move on and let it go."
 		}
 	]
 ]

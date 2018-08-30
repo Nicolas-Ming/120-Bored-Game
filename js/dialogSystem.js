@@ -50,11 +50,9 @@ dialogSystem.prototype = {
 		this.dialog = JSON.parse(this.game.cache.getText(currentJSON));
 		
 		// add dialog box sprite
-		//**************currently playing with this to have different boxes and animations**************//
 		this.dialogbox = this.add.button(this.DBOX_X, this.DBOX_Y, currentDBOX,function (){
 			if(!this.dialogTyping) this.TypeText();
 		},this);
-			
 		this.dialogbox.animations.add('wiggly', [0, 1], 10, true);	//puts the wiggle in the dbox
 		this.dialogbox.animations.play('wiggly');
 		//this.dialogbox.visible = false;

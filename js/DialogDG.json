@@ -2,16 +2,56 @@
 	[
 		{
 			"speaker" : "dog",
-			"dialog" : "Tell me, O muse, of that ingenious hero who travelled far and wide after he had sacked the famous town of Troy.",
+			"dialog" : "woof, woof",
 			"newSpeaker" : "true"
 		},
 		{
-			"speaker" : "cactusboi",
-			"dialog" : "Many cities did he visit, and many were the nations with whose manners and customs he was acquainted."
+			"speaker" : "dog",
+			"dialog" : "bark bark, woof, woof woof-woof. Woof woof!"
 		},
-		{	
-			"speaker" : "cactusboi",
-			"dialog" : "Tell me, too, about all these things, O daughter of dog, from whatsoever source you may know them."
+		{
+			"speaker" : "dog",
+			"dialog" : " woof woof arf"
+		},
+		{
+			"speaker" : "dog",
+			"dialog" : "boof"
+		},
+		{
+			"speaker" : "dog",
+			"dialog" : "and i can also speak english too if you’d rather listen to that!"
+		},
+		{
+			"speaker" : "dog",
+			"dialog" : "lol… so, hey!"
+		},
+		{
+			"speaker" : "dog",
+			"dialog" : "I don’t think I can live with ya dismissing your friend so easily! (and I live seven times faster than you! Listen to me, my time is more finite than yours!)"
+		},
+		{
+			"speaker" : "dog",
+			"dialog" : "With each second of mine being relative to seven of yours, I've figured early on that I need to be present in every moment."
+		},
+		{
+			"speaker" : "dog",
+			"dialog" : " I’ve found that if not for others, I would not be me, and need to give my loves the time and understanding that they give to me."
+		},
+		{
+			"speaker" : "dog",
+			"dialog" : "You always ask me who’s a good boy, and although I’m almost sure it’s me, I’m definitely sure that it won’t be you if you don’t show some love to your dear friend."
+		},
+		{
+			"speaker" : "dog",
+			"dialog" : "It’s been three days. And to make you feel better about my imminent death, it’s been twenty-one days for me! It’s been long enough, I think it’s time for y’all to have that talk."
+		},
+		{
+			"speaker" : "dog",
+			"dialog" : "Also, it’s been three days please take me out for a walk."
+		},
+		{
+			"speaker" : "dog",
+			"dialog" : "thank u, ily always, be the best u <3"
 		}
 	]
 ]

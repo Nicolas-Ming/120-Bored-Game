@@ -1,13 +1,57 @@
 [
 	[
-		{
+		{	
 			"speaker" : "portraitlady",
-			"dialog" : "Tell me, O muse, of that '''''ingeniou'''s hero I'who don't travelled far and wide after he had sacked the famous town of Troy.",
+			"dialog" : "Wait is that it? God, what a bummer, right?",
 			"newSpeaker" : "true"
 		},
-		{
-			"speaker" : "cactusboi",
-			"dialog" : "Many cities did he visit, and many were the nations with whose manners and customs he was acquainted."
+		{	
+			"speaker" : "portraitlady",
+			"dialog" : "..."
+		},
+		{	
+			"speaker" : "portraitlady",
+			"dialog" : "Oh! I didn't mean to startle you. I was just over reading that conversation. But would you like my advice?"
+		},
+		{	
+			"speaker" : "portraitlady",
+			"dialog" : "..."
+		},
+		{	
+			"speaker" : "portraitlady",
+			"dialog" : "Yes...? No...? I’ll take your silence as yes. You’ll need my advice, trust me."
+		},
+		{	
+			"speaker" : "portraitlady",
+			"dialog" : "What you said? Really not that bad."
+		},
+		{	
+			"speaker" : "portraitlady",
+			"dialog" : "I mean, yeah, whatever. They don't like to talk about it. But they shouldn't drill you this hard."
+		},
+		{	
+			"speaker" : "portraitlady",
+			"dialog" : "It’s not like you were trying to embarass them or anything. And it wasn’t even a secret! Honestly, they’re being a little TOO sensitive about it."
+		},
+		{	
+			"speaker" : "portraitlady",
+			"dialog" : "Just tell them if they acted poorly in the past, they should be able to live with that. And that you didn’t mean to offend them in the first place."
+		},
+		{	
+			"speaker" : "portraitlady",
+			"dialog" : "There’s no reason they should be mad at all. That’s what I think at least."
+		},
+		{	
+			"speaker" : "portraitlady",
+			"dialog" : "They can play victim all they want, but we both know you’re in the right."
+		},
+		{	
+			"speaker" : "portraitlady",
+			"dialog" : "Well, that’s about all the time I can dedicate myself into caring about this. Hope you make the right decision here."
+		},
+		{	
+			"speaker" : "portraitlady",
+			"dialog" : "Also, don’t worry who I am. People take information from people they don’t know all the time."
 		}
 	]
 ]
