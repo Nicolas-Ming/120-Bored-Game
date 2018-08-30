@@ -9,6 +9,7 @@ var day = function() {
 };
 day.prototype =  {
     preload: function() {
+        counter = 0;
         console.log('preload: day');
         //assets
         game.load.image('phone', 'assets/img/phone.png');
@@ -85,6 +86,7 @@ day.prototype =  {
             if(numDay == 0) game.state.start('night');
             else if(numDay == 1) game.state.start('night2');
             else if(numDay == 2) game.state.start('night3');
+            else if(numDay == 3) game.state.start('mainMenu');
         }
 
 

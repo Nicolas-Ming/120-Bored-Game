@@ -14,15 +14,17 @@ var night2 = function() {
 night2.prototype = {
 
   preload: function() {
-
+    ender = 0;
   },//end function
 
 //create
   create: function(){
       cursor = this.input.keyboard.createCursorKeys();
 
+      game.physics.startSystem(Phaser.Physics.ARCADE);
 
-
+      this.bgroundtiles = this.game.add.group();
+      this.bground();
 
 //room assets
 
@@ -69,17 +71,9 @@ night2.prototype = {
       cabinet.scale.setTo         (0.5);
       plant.anchor.setTo          (0.5);
       plant.scale.setTo           (-0.2, 0.2);
-      // wallL.anchor.setTo          (0.5);
-      // wallL.scale.setTo     (0.4, 0.4);
-      // wallL.sendToBack();
-      // wallR.anchor.setTo          (0.5);
-      // wallR.scale.setTo     (-0.4, 0.4);
-      // wallR.sendToBack();
       bed.anchor.setTo            (0.5);
-      bed.scale.setTo        (0.4, 0.4);
-      bed.angle                    = 15;
-
-
+      bed.scale.setTo             (0.4, 0.4);
+      bed.angle                   = 15;
 
       pupperfull.anchor.setTo(0.5);
       pupperfull.scale.setTo (0.4);
@@ -95,9 +89,35 @@ night2.prototype = {
 
 //update
   	update: function(){
+      this.bgroundtiles.forEach(this.wrapSprite, this, true);
+    },//end update
 
-  	},//end update
-
+    bground: function(){
+      for(let j = 0; j < 3; j++){
+      for(let i = 0; i < 4; i++){
+        this.tile = game.add.sprite(0 + 511*i*.708,0 + 511*j*.708, 'bground');
+        this.game.physics.enable(this.tile,Phaser.Physics.ARCADE);
+        this.tile.anchor.set(0.5,0.5);
+        this.tile.scale.set(.708);
+        this.tile.body.velocity.x = -50;
+        this.tile.body.velocity.y = -50;
+        this.bgroundtiles.add(this.tile);
+      }
+    }
+    },
+    wrapSprite: function(sprite) {
+    // if sprite passes screen edge, wrap to opposite side
+    if(sprite.x + sprite.width/2 < 0) {
+      sprite.x = game.width + sprite.width/2;
+    } else if(sprite.x - sprite.width/2 > game.width) {
+      sprite.x = 0 - sprite.width/2;
+    }
+    if(sprite.y + sprite.height/2 < 0) {
+      sprite.y = game.height + sprite.height/2;
+    } else if(sprite.y - sprite.height/2 > game.height) {
+      sprite.y = 0 - sprite.height/2;
+    }
+  },
 	// sX,sY is start of the X,Y and eX, eY is the end
   	transform: function(spriteName,fps,sX,sY,eX,eY, flag){
     // right now the way they are being made is that they are all becoming just butt for right now
@@ -112,9 +132,9 @@ night2.prototype = {
 
            	game.add.tween(spriteTween).to({angle: 360},fps, Phaser.Easing.Cubic.In, true);
 
-
              game.add.tween(spriteTween).to({angle: 360},fps, Phaser.Easing.Cubic.In, true);
-             game.time.events.add   (3530, function(){
+
+             game.time.events.add(2530, function(){
                 spriteTween.kill();
                 dyingSprite = game.add.sprite(eX, eY, spriteName);
                 dSprites.add(dyingSprite);
@@ -122,8 +142,8 @@ night2.prototype = {
                 dyingSprite.scale.setTo(0.4);
               });
 
-       	game.time.events.add(550, function() {
-             game.add.tween(spriteTween).to({ x: eX, y: eY},4000, Phaser.Easing.Elastic.Out, true);
+       	game.time.events.add(1550, function() {
+             game.add.tween(spriteTween).to({ x: eX, y: eY},800, Phaser.Easing.Elastic.Out, true);
         });
 
         ender++;
@@ -133,14 +153,16 @@ night2.prototype = {
           game.add.tween(pupperfull).to({ x: game.world.centerX, y: game.world.centerY},fps, Phaser.Easing.Default, true);
         }else if(ender == 5){
 
-            game.time.events.add(4000, function(){
+            game.time.events.add(2000, function(){
             	dSprites.pendingDestroy = true;
                	cactusboi = game.add.sprite(255, 230, 'cactusboi');
                	cactusboi.anchor.setTo(0.5);
                	cactusboi.scale.setTo(0.6);
                 currentDBOX = 'dialogboxCB';
                 currentJSON = 'dialogCB';
-                game.state.start('dialogSystem');
+                game.time.events.add(500, function(){
+               	    game.state.start('dialogSystem');
+                });
 
            });
         }//end if

@@ -14,15 +14,16 @@ var night3 = function() {
 night3.prototype = {
 
   preload: function() {
-
+    ender = 0;
   },//end function
 
 //create
   create: function(){
       cursor = this.input.keyboard.createCursorKeys();
+      game.physics.startSystem(Phaser.Physics.ARCADE);
 
-
-
+      this.bgroundtiles = this.game.add.group();
+      this.bground();
 
 //room assets
 
@@ -32,7 +33,6 @@ night3.prototype = {
       cabinet     = game.add.sprite(650, 300, 'cabinet');
       bed         = game.add.sprite(880, 530, 'bed');
       plant       = game.add.sprite(480, 270, 'plant');
-
 
 //the boiiiiiiiiiiiiiiiiiiiiiiiii  //frm, sX, sY, eX, eY
       righthand = game.add.sprite(660, 220,'righthand');
@@ -99,8 +99,35 @@ night3.prototype = {
 
 //update
   	update: function(){
+      this.bgroundtiles.forEach(this.wrapSprite, this, true);
+    },//end update
 
-  	},//end update
+    bground: function(){
+      for(let j = 0; j < 3; j++){
+      for(let i = 0; i < 4; i++){
+        this.tile = game.add.sprite(0 + 511*i*.708,0 + 511*j*.708, 'bground');
+        this.game.physics.enable(this.tile,Phaser.Physics.ARCADE);
+        this.tile.anchor.set(0.5,0.5);
+        this.tile.scale.set(.708);
+        this.tile.body.velocity.x = -50;
+        this.tile.body.velocity.y = -50;
+        this.bgroundtiles.add(this.tile);
+      }
+    }
+    },
+    wrapSprite: function(sprite) {
+    // if sprite passes screen edge, wrap to opposite side
+    if(sprite.x + sprite.width/2 < 0) {
+      sprite.x = game.width + sprite.width/2;
+    } else if(sprite.x - sprite.width/2 > game.width) {
+      sprite.x = 0 - sprite.width/2;
+    }
+    if(sprite.y + sprite.height/2 < 0) {
+      sprite.y = game.height + sprite.height/2;
+    } else if(sprite.y - sprite.height/2 > game.height) {
+      sprite.y = 0 - sprite.height/2;
+    }
+  },
 
 	// sX,sY is start of the X,Y and eX, eY is the end
   	transform: function(spriteName,fps,sX,sY,eX,eY){
@@ -143,9 +170,12 @@ night3.prototype = {
                	pupperfull = game.add.sprite(500, 350, 'pupperfull');
                	pupperfull.anchor.setTo(0.5);
                	pupperfull.scale.setTo(0.5);
+
                 currentDBOX = 'dialogboxDG';
                 currentJSON = 'dialogDG';
-                game.state.start('dialogSystem');
+                game.time.events.add(500, function(){
+               	    game.state.start('dialogSystem');
+                });
 
            });
         }//end if

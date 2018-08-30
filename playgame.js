@@ -1,8 +1,9 @@
 // editted dialog system by nathan
-
+var currentDBOX = 'dialogboxCB';	//for later use in switching the dialogbox
+var currentJSON = 'dialogDOG';
 //var currentSpeaker;	//don't actually need because the parser will decide for u, just need a decider for which JSON to play and which DBOX to use
 
-dialogSystem = function(game){
+MyGame.PlayGame = function(game){
 	// dialog constants
 	this.DBOX_X = 0+140;			// dialog box x-position
 	this.DBOX_Y = 350+50;			// dialog box y-position
@@ -32,15 +33,13 @@ dialogSystem = function(game){
 	this.cactusboi = null;
 	this.portraitlady = null;
 	this.dog = null;
-	this.dialog = null;
 
 	this.OFFSCREEN_X = -500;	// x,y values to place characters offscreen
 	this.OFFSCREEN_Y = 1000;	//
 };
 
-dialogSystem.prototype = {
+MyGame.PlayGame.prototype = {
 	create: function() {
-		this.dialogConvo = 0;
 		//background intialization
 		this.physics.startSystem(Phaser.Physics.ARCADE);
         this.bgroundtiles = this.add.group();
@@ -51,10 +50,7 @@ dialogSystem.prototype = {
 		
 		// add dialog box sprite
 		//**************currently playing with this to have different boxes and animations**************//
-		this.dialogbox = this.add.button(this.DBOX_X, this.DBOX_Y, currentDBOX,function (){
-			if(!this.dialogTyping) this.TypeText();
-		},this);
-			
+		this.dialogbox = this.add.sprite(this.DBOX_X, this.DBOX_Y, currentDBOX);
 		this.dialogbox.animations.add('wiggly', [0, 1], 10, true);	//puts the wiggle in the dbox
 		this.dialogbox.animations.play('wiggly');
 		//this.dialogbox.visible = false;
@@ -91,10 +87,10 @@ dialogSystem.prototype = {
 
 /******** CHANGE THIS TO A MOUSE CLICK ********/
 		// check for spacebar press
-		// if(this.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR) && !this.dialogTyping) {
-		// 	// trigger dialog
-		// 	this.TypeText();
-		// }
+		if(this.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR) && !this.dialogTyping) {
+			// trigger dialog
+			this.TypeText();
+		}
 /**********************************************/
 
 	},
@@ -115,9 +111,6 @@ dialogSystem.prototype = {
 		// make sure we're not out of conversations
 		if(this.dialogConvo >= this.dialog.length) {
 			console.log('End of Conversations');
-			numDay++;
-			game.state.start('day');
-
 		} else {
 			// set current speaker
 			this.dialogSpeaker = this.dialog[this.dialogConvo][this.dialogLine]['speaker'];

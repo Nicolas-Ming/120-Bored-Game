@@ -7,6 +7,7 @@ mainMenu.prototype =  {
 		//game.state.start('day');
 	},
 	create: function() {
+		numDay = 0;
 		game.physics.startSystem(Phaser.Physics.ARCADE);
 
 		this.bgroundtiles = this.game.add.group();

@@ -8,31 +8,6 @@
 		{
 			"speaker" : "cactusboi",
 			"dialog" : "Many cities did he visit, and many were the nations with whose manners and customs he was acquainted."
-		},
-		{	
-			"speaker" : "cactusboi",
-			"dialog" : "Tell me, too, about all these things, O daughter of dog, from whatsoever source you may know them."
-		}
-	],
-	[
-		{	
-			"speaker" : "portraitlady",
-			"dialog" : "Father, son of Saturn, King of kings, it served Aegisthus right, and so it would any one else who does as he did; but Aegisthus is neither here nor there.",
-			"newSpeaker" : "true"
-		},
-		{	
-			"speaker" : "portraitlady",
-			"dialog" : "It is for Ulysses that my heart bleeds, when I think of his sufferings in that lonely sea-girt island, far away, poor man, from all his friends."
-		},
-		{	
-			"speaker" : "dog",
-			"dialog" : "My child, what are you talking about? How can I forget Ulysses than whom there is no more capable man on earth, nor more liberal in his offerings to the immortal gods that live in heaven?",
-			"newSpeaker" : "true"
-		},
-		{	
-			"speaker" : "portraitlady",
-			"dialog" : "If, then, the gods now mean that Ulysses should get home, we should first send Mercury to the Ogygian island to tell Calypso that we have made up our minds and that he is to return.",
-			"newSpeaker" : "true"
 		}
 	]
 ]

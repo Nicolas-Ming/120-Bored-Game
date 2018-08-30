@@ -19,6 +19,7 @@ night.prototype = {
 
 //create
   create: function(){
+  	ender = 0;
 	game.physics.startSystem(Phaser.Physics.ARCADE);
 
 	this.bgroundtiles = this.game.add.group();
@@ -152,7 +153,7 @@ night.prototype = {
 
              game.add.tween(spriteTween).to({angle: 360},fps, Phaser.Easing.Cubic.In, true);
 
-             game.time.events.add   (2530, function(){
+             game.time.events.add(2530, function(){
 
                 spriteTween.kill();
                 dyingSprite = game.add.sprite(eX, eY, spriteName);
@@ -181,9 +182,12 @@ night.prototype = {
                	portraitladyfull = game.add.sprite(600, 400, 'portraitladyfull');
                	portraitladyfull.anchor.setTo(0.5);
                	portraitladyfull.scale.setTo(0.6);
-               	currentDBOX = 'dialogboxPL';
+
+				currentDBOX = 'dialogboxPL';
 				currentJSON = 'dialogPL';
-               	game.state.start('dialogSystem');
+                game.time.events.add(500, function(){
+               	    game.state.start('dialogSystem');
+                });
 
            });
         }//end if
