@@ -7,6 +7,10 @@ mainMenu.prototype =  {
 		//game.state.start('day');
 	},
 	create: function() {
+
+		music = game.add.audio('songloop',.5,true);
+		music.play();
+
 		numDay = 0;
 		game.physics.startSystem(Phaser.Physics.ARCADE);
 

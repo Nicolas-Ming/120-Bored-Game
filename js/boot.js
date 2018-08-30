@@ -3,6 +3,8 @@ var boot = function() {
 };
 boot.prototype =  {
 	preload: function() {
+		game.load.audio('songloop','assets/audio/frootloops.mp3');
+
 		game.load.image('cactusboi',      'assets/img/cactusboi/cactusboi.png');
       	game.load.image('lefthand',       'assets/img/cactusboi/lefthand.png'); // the cactus' right hand confusing I know, but I'm too lazy to change cuz it matters little
       	game.load.image('righthand',      'assets/img/cactusboi/righthand.png'); //the viewer's right
