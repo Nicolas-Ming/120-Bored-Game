@@ -7,9 +7,9 @@ var choiceB;
 var choiceC;
 
 var day = function() {
-    //local variables
-    this.x = null;
-    this.y = null;
+	//local variables
+	this.x = null;
+	this.y = null;
     this.counter = 0;
 
 };
@@ -487,3 +487,4 @@ day.prototype =  {
         }
     }
 }
+
