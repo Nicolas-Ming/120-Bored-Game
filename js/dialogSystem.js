@@ -77,9 +77,6 @@ dialogSystem.prototype = {
 		this.layers.add(this.dialogbox);
 		this.layers.add(this.dialogText);
 
-		// debug
-		console.log(this.dialog);
-
 		// start dialog
 		this.TypeText();
 	},
@@ -112,7 +109,6 @@ dialogSystem.prototype = {
 
 		// make sure we're not out of conversations
 		if(this.dialogConvo >= this.dialog.length) {
-			console.log('End of Conversations');
 			numDay++;
 			game.state.start('day');
 

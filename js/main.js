@@ -14,7 +14,6 @@ var startCactusNoFaceY = 475;
 var endCactusNoFaceX = 500;
 var endCactusNoFaceY = 500;
 var emitter;
-console.log('preload: main');
 
 //state management
 game.state.add('boot',boot);

@@ -147,7 +147,6 @@ night2.prototype = {
         });
 
         ender++;
-        console.log('ender ' + ender);
         //spawn actual boi-o
         if(ender == 2){
           game.add.tween(pupperfull).to({ x: game.world.centerX, y: game.world.centerY},fps, Phaser.Easing.Default, true);

@@ -3,13 +3,10 @@ var mainMenu = function() {
 };
 mainMenu.prototype =  {
 	preload: function() {
-		console.log('preload: MM');
-		//game.state.start('day');
 	},
 	create: function() {
 
-		music = game.add.audio('songloop',2,true);
-		music.play();
+
 
 		numDay = 0;
 		game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -56,15 +53,7 @@ mainMenu.prototype =  {
 		}
 	},
 	moveScene: function(){
-		console.log('STARTGAME');
-		//dialButB.kill();
 		game.state.start('day');
 
 	},
-	// B_Dialog: function(){
-	// 	console.log('QUIT');
-	// 	//this.dialButA.kill();
-	// 	game.state.start('');
-
-	// }
 }

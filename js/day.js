@@ -16,14 +16,12 @@ var day = function() {
 day.prototype =  {
     preload: function() {
         counter = 0;
-        console.log('preload: day');
         //assets
         game.load.image('phone', 'assets/img/phone.png');
-        //game.load.image('friendBox', 'assets/img/friendBoxv4.png');
         game.load.spritesheet('dotdotdot', 'assets/img/dotdotdot.png', 82, 22, 5);
         game.load.spritesheet('choiceBox', 'assets/img/emptyanswerbox.png', 396, 94, 2);
         game.load.spritesheet('textapp', 'assets/img/textapp.png', 45, 48, 4)
-        game.load.spritesheet('friendBox', 'assets/img/friendBoxv4.png', 800, 250, 2);  //placeholder!
+        game.load.spritesheet('friendBox', 'assets/img/friendBoxv4.png', 800, 250, 2);
 
     },
     create: function() {
@@ -40,7 +38,6 @@ day.prototype =  {
         //typingtyping
             dotdotdot          = game.add.button(540, 1080, 'dotdotdot',
                 function(){
-                    console.log('typing...lolol')
                     this.options();
                 }, this);   
             dotdotdot.animations.add('typing', [0, 1, 2, 3, 4,], 7, true); 
@@ -49,7 +46,6 @@ day.prototype =  {
             textapp            = game.add.button(540-75, 290-130, 'textapp', 
             // textapp            = game.add.button(540, 1080, 'textapp', 
                 function(){
-                    console.log('textapp!');
                     //this.options();
                     textapp.kill();
                     phoneZoom = game.add.tween(phone.scale).to({x: 10, y: 10}, 900, Phaser.Easing.Default, true);
@@ -131,7 +127,6 @@ day.prototype =  {
         //thus the sections of code with buttons look like this, lol
             choiceA            = game.add.button(540, 1080, 'choiceBox', 
                 function(){
-                    console.log('choiceA!');
                     if(numDay == 0){ 
                         game.add.tween(uTextA1).to({ x: 440, y: 490}, 900, Phaser.Easing.Default, true);
                         game.add.tween(uBoxA1).to({x: 420, y: 485}, 900, Phaser.Easing.Default, true);
@@ -163,7 +158,6 @@ day.prototype =  {
 
             choiceB            = game.add.button(540, 1080, 'choiceBox', 
                 function(){
-                    console.log('choiceB!');
                     if(numDay == 0){
                         game.add.tween(uTextA2).to({ x: 600, y: 510}, 900, Phaser.Easing.Default, true);
                         game.add.tween(uBoxA2).to({x: 920, y: 485}, 900, Phaser.Easing.Default, true);
@@ -195,7 +189,6 @@ day.prototype =  {
 
             choiceC            = game.add.button(540, 1080, 'choiceBox', 
                 function(){
-                    console.log('choiceC!');
                     if(numDay == 0){
                         //howdy
                     }else if(numDay == 1){
@@ -236,7 +229,6 @@ day.prototype =  {
             
             uBoxA1 = game.add.button(420, 1080, 'choiceBox', 
                     function(){
-                        console.log('following path for choice A1');
                         game.state.start('mainMenu');
                     }, this);
                     uBoxA1.scale.setTo(1.5, 1.4);
@@ -245,7 +237,6 @@ day.prototype =  {
 
             uBoxA2 = game.add.button(920, 1080, 'choiceBox', 
                     function(){
-                        console.log('following path for choice A2');
                         game.state.start('night');
                     }, this);
                     uBoxA2.scale.setTo(1, 0.8);
@@ -262,7 +253,6 @@ day.prototype =  {
             
             uBoxB1 = game.add.button(420, 1080, 'choiceBox',
                     function(){
-                        console.log('following path for choice B1');
                         game.state.start('mainMenu');
                     }, this);
                     uBoxB1.scale.setTo(1.5, 1.4);
@@ -271,7 +261,6 @@ day.prototype =  {
             
             uBoxB2 = game.add.button(920, 1080, 'choiceBox', 
                     function(){
-                        console.log('following path for choice B2');
                         game.state.start('night2');
                     }, this);
                     uBoxB2.scale.setTo(1, 0.8);
@@ -290,7 +279,6 @@ day.prototype =  {
             
             uBoxC1 = game.add.button(420, 1080, 'choiceBox',
                     function(){
-                        console.log('following path for choice C1');
                         game.state.start('mainMenu');
                     }, this);
                     uBoxC1.scale.setTo(1.5, 1.4);
@@ -299,7 +287,6 @@ day.prototype =  {
 
             uBoxC2 = game.add.button(920, 1080, 'choiceBox', 
                     function(){
-                        console.log('following path for choice C2');
                         game.state.start('mainMenu');
                     }, this);
                     uBoxC2.scale.setTo(1, 0.8);
@@ -309,7 +296,6 @@ day.prototype =  {
             
             uBoxC3 = game.add.button(920, 1080, 'choiceBox', 
                     function(){
-                        console.log('following path for choice C3');
                         game.state.start('night3');
                     }, this);
                     uBoxC3.scale.setTo(1, 0.8);
@@ -327,7 +313,6 @@ day.prototype =  {
 
             uBoxD1 = game.add.button(420, 1080, 'choiceBox',
                     function(){
-                        console.log('following path for choice D1');
                         game.state.start('mainMenu');
                     }, this);
                     uBoxD1.scale.setTo(1.5, 1.5);
@@ -336,7 +321,6 @@ day.prototype =  {
 
             uBoxD2 = game.add.button(920, 1080, 'choiceBox', 
                     function(){
-                        console.log('following path for choice D2');
                         game.state.start('mainMenu');
                     }, this);
                     uBoxD2.scale.setTo(1, 1.4);
@@ -346,27 +330,11 @@ day.prototype =  {
 
             uBoxD3 = game.add.button(920, 1080, 'choiceBox', 
                     function(){
-                        console.log('following path for choice D3');
                         game.state.start('mainMenu');
                     }, this);
                     uBoxD3.scale.setTo(1, 1.5);
                     uBoxD3.anchor.setTo(1, 0);
             uTextD3 = game.add.bitmapText(440, 1080, 'font', 'Hello hello. I\'m okay, just needed some \ntime to think about how to respond to you. \nI\'m really sorry for bringing (former friend) \nup. I didn\'t really think about how that could \nhave affected you, and I understand how that \nwas hurtful on my part. I should have been more \nmindful about what I said especially in front of \nothers. ily let\'s hang!', 24);
-                
-
-
-        
-        //uTextB = game.add.bitmapText(440, 1080, 'font', 'I\'ll take some time', 24);
-
-        //text placement when there's three options
-        // var choiceAtext = game.add.bitmapText(342-4, 590-45, 'font', 'yee', 32);
-        // choiceAtext.anchor.setTo(0.5);
-        // var choiceBtext = game.add.bitmapText(738+4, 590-45, 'font', 'haw', 32);
-        // choiceBtext.anchor.setTo(0.5);
-        // var choiceCtext = game.add.bitmapText(540, 647, 'font', 'yeehaw', 32);
-        // choiceCtext.anchor.setTo(0.5);
-        //this.options();
-
 
         //scales&anchors
             phone.scale.setTo(1);
@@ -381,12 +349,6 @@ day.prototype =  {
     },
     update: function() {
         this.bgroundtiles.forEach(this.wrapSprite, this, true);
-        if(game.input.activePointer.leftButton.isDown){
-            //console.log('Click');
-            //counter += 1;
-            //console.log(counter);
-        }
-
         if(counter == 1){
             game.add.tween(dotdotdot).to({ x: 560, y: 250}, 500, Phaser.Easing.Default, true);
             dotdotdot.animations.play('typing');
@@ -394,7 +356,6 @@ day.prototype =  {
 
         if(counter == 2){
             dotdotdot.kill();
-            // game.add.tween(message2).to({ x: 550, y: 276}, 100, Phaser.Easing.Default, true);
         }
         if(counter == 3){
             if(numDay == 0) game.state.start('night');
@@ -405,14 +366,6 @@ day.prototype =  {
 
 
 
-
-    },
-    render: function() {
-        //game.debug.cameraInfo(game.camera, 32, 32);
-        //game.debug.spriteCoords(player, 32, 500);
-        //game.debug.body(bed);
-       // game.debug.body(phone);
-       // game.debug.body(player);
 
     },
     bground: function(){
@@ -442,7 +395,6 @@ day.prototype =  {
         }
     },
     phonemove: function(){
-        console.log('starting phone animations');
         game.add.tween(phone).to({ x: 540, y: 290}, 900, Phaser.Easing.Default, true);
         game.add.tween(phone).to({angle: -360}, 900, Phaser.Easing.Cubic.In, true);
         // game.add.tween(message1).to({ x: 520, y: 190}, 900, Phaser.Easing.Default, true);
@@ -451,12 +403,7 @@ day.prototype =  {
         texty.onComplete.add(function(){textapp.alpha = 1; textapp.animations.play('oneNotif');}, this);
         // textapp.animations.play('oneNotif');
     },
-    textmove: function(){
-        console.log('&here should come some texts!');
-
-    },
     options: function(){
-        console.log('bringing up options');
         if(numDay >= 2){
             game.add.tween(choiceA).to({ x: 140, y: 500}, 900, Phaser.Easing.Default, true);
             game.add.tween(choiceB).to({ x: 544, y: 500}, 900, Phaser.Easing.Default, true);

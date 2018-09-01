@@ -169,11 +169,9 @@ night.prototype = {
         });
 
         ender++;
-        console.log('ender ' + ender);
 
         //spawn actual lady
         if(ender == 1){
-          console.log('ender' + ender);
           //game.add.tween(justdog).to({ x: game.world.centerX, y: game.world.centerY},fps, Phaser.Easing.Default, true);
         }else if(ender == 4){
 
