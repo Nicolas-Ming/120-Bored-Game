@@ -162,7 +162,7 @@ night3.prototype = {
         if(ender == 3){
             game.time.events.add(2000, function(){
             	dSprites.pendingDestroy = true;
-               	pupperfull = game.add.sprite(500, 350, 'pupperfull');
+               	pupperfull = game.add.sprite(500, 350, 'dog');
                	pupperfull.anchor.setTo(0.5);
                	pupperfull.scale.setTo(0.5);
 

@@ -177,7 +177,7 @@ night.prototype = {
 
             game.time.events.add(2000, function(){
             	dSprites.pendingDestroy = true;
-               	portraitladyfull = game.add.sprite(600, 400, 'portraitladyfull');
+               	portraitladyfull = game.add.sprite(600, 400, 'portraitlady');
                	portraitladyfull.anchor.setTo(0.5);
                	portraitladyfull.scale.setTo(0.6);
 

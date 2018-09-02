@@ -16,13 +16,6 @@ var day = function() {
 day.prototype =  {
     preload: function() {
         counter = 0;
-        //assets
-        game.load.image('phone', 'assets/img/phone.png');
-        game.load.spritesheet('dotdotdot', 'assets/img/dotdotdot.png', 82, 22, 5);
-        game.load.spritesheet('choiceBox', 'assets/img/emptyanswerbox.png', 396, 94, 2);
-        game.load.spritesheet('textapp', 'assets/img/textapp.png', 45, 48, 4)
-        game.load.spritesheet('friendBox', 'assets/img/friendBoxv4.png', 800, 250, 2);
-
     },
     create: function() {
         game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -229,7 +222,9 @@ day.prototype =  {
             
             uBoxA1 = game.add.button(420, 1080, 'choiceBox', 
                     function(){
-                        game.state.start('mainMenu');
+                        game.time.events.add(500, function(){
+                            game.state.start('mainMenu');
+                        });
                     }, this);
                     uBoxA1.scale.setTo(1.5, 1.4);
             uTextA1 = game.add.bitmapText(440, 1080, 'font', 'Hey i thought about it & honestly ur holding me \nback homie, ily but fk u. Ur whole lifestyle is \nwack. Ur foot-stance: wack. The way u can\'t \nhandle the past: wack. But me? I\'m tight af. \nPeace! Smell ya l8r, fool!!', 24);
@@ -237,7 +232,9 @@ day.prototype =  {
 
             uBoxA2 = game.add.button(920, 1080, 'choiceBox', 
                     function(){
-                        game.state.start('night');
+                        game.time.events.add(500, function(){
+                            game.state.start('night');
+                        });
                     }, this);
                     uBoxA2.scale.setTo(1, 0.8);
                     uBoxA2.anchor.setTo(1, 0);   //might be useful to move player chatbocks anchors to (1,0) to be alligned to the right!
@@ -253,7 +250,9 @@ day.prototype =  {
             
             uBoxB1 = game.add.button(420, 1080, 'choiceBox',
                     function(){
-                        game.state.start('mainMenu');
+                        game.time.events.add(500, function(){
+                            game.state.start('mainMenu');
+                        });
                     }, this);
                     uBoxB1.scale.setTo(1.5, 1.4);
             uTextB1 = game.add.bitmapText(440, 1080, 'font', 'Hey that\'s nice to hear. But regarding \nwhat happened, I don\'t believe that it\'s \nthat big of a deal. I\'m not going to apologize \nfor bringing up something that you did before. \nIt happened so deal with it.', 24);
@@ -261,7 +260,9 @@ day.prototype =  {
             
             uBoxB2 = game.add.button(920, 1080, 'choiceBox', 
                     function(){
-                        game.state.start('night2');
+                        game.time.events.add(500, function(){
+                            game.state.start('night2');
+                        });
                     }, this);
                     uBoxB2.scale.setTo(1, 0.8);
                     uBoxB2.anchor.setTo(1, 0);
@@ -279,7 +280,9 @@ day.prototype =  {
             
             uBoxC1 = game.add.button(420, 1080, 'choiceBox',
                     function(){
-                        game.state.start('mainMenu');
+                        game.time.events.add(500, function(){
+                            game.state.start('mainMenu');
+                        });
                     }, this);
                     uBoxC1.scale.setTo(1.5, 1.4);
             uTextC1 = game.add.bitmapText(440, 1080, 'font', 'I\'m doing fine, but after thinking over what \nyou said the other day I think you are \njust overreacting and you need to get over it.', 24);
@@ -287,7 +290,9 @@ day.prototype =  {
 
             uBoxC2 = game.add.button(920, 1080, 'choiceBox', 
                     function(){
-                        game.state.start('mainMenu');
+                        game.time.events.add(500, function(){
+                            game.state.start('mainMenu');
+                        });
                     }, this);
                     uBoxC2.scale.setTo(1, 0.8);
                     uBoxC2.anchor.setTo(1, 0);
@@ -296,7 +301,9 @@ day.prototype =  {
             
             uBoxC3 = game.add.button(920, 1080, 'choiceBox', 
                     function(){
-                        game.state.start('night3');
+                        game.time.events.add(500, function(){
+                            game.state.start('night3');
+                        });
                     }, this);
                     uBoxC3.scale.setTo(1, 0.8);
                     uBoxC3.anchor.setTo(1, 0);
@@ -313,7 +320,9 @@ day.prototype =  {
 
             uBoxD1 = game.add.button(420, 1080, 'choiceBox',
                     function(){
-                        game.state.start('mainMenu');
+                        game.time.events.add(500, function(){
+                            game.state.start('mainMenu');
+                        });
                     }, this);
                     uBoxD1.scale.setTo(1.5, 1.5);
             uTextD1 = game.add.bitmapText(440, 1080, 'font', 'I\'m okay. And about the other day, I think \nthat honestly ur holding me back homie, ily \nbut fk u. Ur whole lifestyle is wack. Ur \nfoot-stance: wack. The way u can\'t handle \nthe past: wack. But me? I\'m sick af. Peace! \nCya l8r, nerd! I\'m OUT!', 24);                
@@ -321,7 +330,9 @@ day.prototype =  {
 
             uBoxD2 = game.add.button(920, 1080, 'choiceBox', 
                     function(){
-                        game.state.start('mainMenu');
+                        game.time.events.add(500, function(){
+                            game.state.start('mainMenu');
+                        });
                     }, this);
                     uBoxD2.scale.setTo(1, 1.4);
                     uBoxD2.anchor.setTo(1, 0);
@@ -330,7 +341,9 @@ day.prototype =  {
 
             uBoxD3 = game.add.button(920, 1080, 'choiceBox', 
                     function(){
-                        game.state.start('mainMenu');
+                        game.time.events.add(500, function(){
+                            game.state.start('mainMenu');
+                        });
                     }, this);
                     uBoxD3.scale.setTo(1, 1.5);
                     uBoxD3.anchor.setTo(1, 0);
@@ -353,20 +366,9 @@ day.prototype =  {
             game.add.tween(dotdotdot).to({ x: 560, y: 250}, 500, Phaser.Easing.Default, true);
             dotdotdot.animations.play('typing');
         }
-
         if(counter == 2){
             dotdotdot.kill();
         }
-        if(counter == 3){
-            if(numDay == 0) game.state.start('night');
-            else if(numDay == 1) game.state.start('night2');
-            else if(numDay == 2) game.state.start('night3');
-            else if(numDay == 3) game.state.start('mainMenu');
-        }
-
-
-
-
     },
     bground: function(){
         for(let j = 0; j < 3; j++){

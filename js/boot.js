@@ -13,23 +13,14 @@ boot.prototype =  {
       	game.load.image('cactusnoface',      'assets/img/cactusboi/cactusnoface.png');
       	game.load.spritesheet('dialogboxCB', 'assets/img/cactusboi/dialogboxCB.png', 800, 250, 2);
 
-      	game.load.image('title',             'assets/img/mainmenu/titleone.png');
-      	game.load.spritesheet('startButton', 'assets/img/buttons/startButton.png',300,104,3)
-
-      	game.load.image('button',            'assets/img/buttons/button.png');
-      	game.load.image('eye',               'assets/img/buttons/eye.png');
-	    game.load.image('transition',        'assets/img/buttons/transition.png');
-	    game.load.image('pB',                'assets/img/buttons/pB.png');
-
-      	game.load.image('dialButA',          'assets/img/buttons/dialButA.png');
-      	game.load.image('A_Story',           'assets/img/buttons/A_Story.png');
+      	game.load.image('title',             'assets/img/mainmenu/titletwo.png');
+      	game.load.spritesheet('startButton', 'assets/img/mainmenu/startButton.png',300,104,3)
 
       	game.load.image('desk',              'assets/img/room/newdesk.png');
       	game.load.image('coathanger',        'assets/img/room/coathanger.png');
       	game.load.image('cabinet',           'assets/img/room/cabinet.png');
       	game.load.image('plant',             'assets/img/room/plant.png');
       	game.load.image('bed',               'assets/img/room/bed.png');
-      	game.load.image('floor',             'assets/img/room/floor.png');
       	game.load.image('room',              'assets/img/room/wholeassroom-so.png');
       	game.load.image('bground',           'assets/img/room/tilebackground.png');
 

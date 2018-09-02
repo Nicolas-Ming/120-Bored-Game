@@ -16,7 +16,7 @@ mainMenu.prototype =  {
 		this.bground();
 		title = game.add.sprite(540, 250, 'title');
 		title.anchor.setTo                   (0.5);
-		title.scale.setTo                    (1.8);
+		title.scale.setTo                    (.8);
 
 		this.sButton = this.add.button(540, 550, 'startButton', this.moveScene);
 		this.sButton.anchor.setTo      (0.5);

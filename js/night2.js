@@ -47,7 +47,7 @@ night2.prototype = {
 
 //puuuper
 
-      pupperfull  = game.add.sprite(300, 340, 'pupperfull');
+      pupperfull  = game.add.sprite(300, 340, 'justdog');
 
 //portrait lady
 
