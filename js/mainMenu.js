@@ -6,8 +6,6 @@ mainMenu.prototype =  {
 	},
 	create: function() {
 
-
-
 		numDay = 0;
 		game.physics.startSystem(Phaser.Physics.ARCADE);
 

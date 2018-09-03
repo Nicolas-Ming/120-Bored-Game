@@ -1,6 +1,7 @@
 var game = new Phaser.Game(1080,720);
 
 
+
 //global variables
 var ender = 0;
 var counter = 0;
