@@ -19,21 +19,6 @@ day.prototype =  {
         counter = 0;
     },
     create: function() {
-        /*//QUICKER TESTING BUTTONS!!!!!!!
-        devButt = game.add.button(0, 0, 'fieri',
-            function(){
-                numDay++
-                game.state.start('day');
-            }, this);
-        devButt.anchor.setTo(0,0);
-        devReset = game.add.button(0, 720, 'fieri',
-            function(){
-                //numDay++
-                game.state.start('day');
-            }, this);
-        devReset.anchor.setTo(0,1);
-        //END OF QUICKER TEST BUTTONS!!!*/
-
 
         game.physics.startSystem(Phaser.Physics.ARCADE);
 
@@ -47,9 +32,9 @@ day.prototype =  {
 
         //typingtyping
             dotdotdot          = game.add.button(760, 1080, 'dotdotdot',
-                function(){
-                    this.options();
-                }, this);   
+                                                    function(){
+                                                        this.options();
+                                                    }, this);   
             dotdotdot.animations.add('typing', [0, 1, 2, 3, 4,], 7, true); 
             
         //the textapp-button!

@@ -49,7 +49,14 @@ boot.prototype =  {
     game.load.spritesheet('dotdotdot',   'assets/img/dialogue/dotdotdot.png', 82, 22, 5);
     game.load.spritesheet('choiceBox',   'assets/img/dialogue/emptyanswerbox.png', 396, 94, 2);
     game.load.spritesheet('textapp',     'assets/img/dialogue/textapp.png', 45, 48, 4)
-    game.load.spritesheet('friendBox',   'assets/img/dialogue/friendBoxv4.png', 800, 250, 2);
+    game.load.spritesheet('friendBox',   'assets/img/dialogue/bluetext.png', 300, 150, 2);
+    game.load.spritesheet('uBox',        'assets/img/dialogue/whitetext.png', 300, 150, 2);
+    game.load.image('textBG',            'assets/img/dialogue/textbackground.png');
+
+    game.load.image('portraitIcon',      'assets/img/dialogue/portraiticon.png');
+    game.load.image('cactusIcon',        'assets/img/dialogue/cactusicon.png');
+    game.load.image('dogIcon',           'assets/img/dialogue/dogicon.png');
+    game.load.image('fieri',             'assets/img/dialogue/fieriapp.png');
 		
 		
 	},
